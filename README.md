@@ -99,10 +99,37 @@ I used [Coolors]() to generate the following pallete from my chosen colours.
 - All navigation and controls are fully keyboard-accessible
 - ARIA labels, roles, and focus indicators are included for all interactive elements
 
-## User Stories
+## Project Planning & Agile Methodology
 
-| Target | Expectation | Outcome |
-| ------ | ----------- | ------- |
+The planning and design of **StudyStack** followed an agile, user-centred approach.
+Project requirements were broken down into Epics and User Stories to ensure clear scope, traceability, and alignment with assessment criteria.
+
+> [View Epics and User Story Mapping](documentation/agile/epics.md)
+
+### User Stories
+
+Each user story includes defined acceptance criteria and is grouped under an Epic to demonstrate how features were planned, prioritised, and implemented throughout development.
+
+| ID  | User Story                  | MoSCoW Priority | File                                                                                       |
+| --- | --------------------------- | --------------- | ------------------------------------------------------------------------------------------ |
+| 01  | View Home Page              | Must Have       | [User Story](./documentation/agile/user-stories/user-story-01-view-home-page.md)           |
+| 02  | Register Account            | Must Have       | [User Story](./documentation/agile/user-stories/user-story-02-register-account.md)         |
+| 03  | Login & Logout              | Must Have       | [User Story](./documentation/agile/user-stories/user-story-03-login-logout.md)             |
+| 04  | Browse Resources            | Must Have       | [User Story](./documentation/agile/user-stories/user-story-04-browse-resources.md)         |
+| 05  | Search Resources            | Should Have     | [User Story](./documentation/agile/user-stories/user-story-05-search-resources.md)         |
+| 06  | Filter Resources            | Could Have      | [User Story](./documentation/agile/user-stories/user-story-06-filter-resources.md)         |
+| 07  | View Resource Detail        | Must Have       | [User Story](./documentation/agile/user-stories/user-story-07-view-resource-detail.md)     |
+| 08  | Create Resource             | Must Have       | [User Story](./documentation/agile/user-stories/user-story-08-create-resource.md)          |
+| 09  | Edit Resource               | Must Have       | [User Story](./documentation/agile/user-stories/user-story-09-edit-resource.md)            |
+| 10  | Delete Resource             | Must Have       | [User Story](./documentation/agile/user-stories/user-story-10-delete-resource.md)          |
+| 11  | Add Comment                 | Should Have     | [User Story](./documentation/agile/user-stories/user-story-11-add-comment.md)              |
+| 12  | Delete Comment              | Should Have     | [User Story](./documentation/agile/user-stories/user-story-12-delete-comment.md)           |
+| 13  | Admin Manage Content        | Could Have      | [User Story](./documentation/agile/user-stories/user-story-13-admin-manage-content.md)     |
+| 14  | Validation & Error Handling | Must Have       | [User Story](./documentation/agile/user-stories/user-story-14-validation-and-errors.md)    |
+| 15  | Responsive Design           | Must Have       | [User Story](./documentation/agile/user-stories/user-story-15-responsive-design.md)        |
+| 16  | Security & Permissions      | Must Have       | [User Story](./documentation/agile/user-stories/user-story-16-security-and-permissions.md) |
+
+> MoSCoW prioritisation was used to manage scope and ensure all core assessment requirements were delivered before enhancement features.
 
 ## Features
 
@@ -119,9 +146,31 @@ I've decomposed my Epics into User Stories for prioritizing and implementing the
 
 ### Existing Features
 
-#### User Facing Features
+### Existing Features
 
-#### Development Features
+The table below outlines the features implemented in **StudyStack**, mapped to their corresponding user stories and MoSCoW priorities.
+
+> [!Note]
+> The ❌ / ✅ indicators are updated throughout development to track implementation progress against the planned feature set.
+
+| Feature                                 | User Story ID | MoSCoW Priority | Implemented |
+| --------------------------------------- | ------------- | --------------- | ----------- |
+| View Home Page & Site Purpose           | 01            | **Must Have**   | ❌          |
+| User Registration                       | 02            | **Must Have**   | ❌          |
+| User Login & Logout                     | 03            | **Must Have**   | ❌          |
+| Browse Study Resources                  | 04            | **Must Have**   | ❌          |
+| Search Study Resources                  | 05            | **Should Have** | ❌          |
+| Filter Resources by Topic & Type        | 06            | **Could Have**  | ❌          |
+| View Resource Detail Page               | 07            | **Must Have**   | ❌          |
+| Create Study Resource                   | 08            | **Must Have**   | ❌          |
+| Edit Own Study Resource                 | 09            | **Must Have**   | ❌          |
+| Delete Own Study Resource               | 10            | **Must Have**   | ❌          |
+| Add Comment to Resource                 | 11            | **Should Have** | ❌          |
+| Delete Own Comment                      | 12            | **Should Have** | ❌          |
+| Admin Content Management (Django Admin) | 13            | **Could Have**  | ❌          |
+| Form Validation & Error Feedback        | 14            | **Must Have**   | ❌          |
+| Responsive Design (Mobile–Desktop)      | 15            | **Must Have**   | ❌          |
+| Security & Permissions Enforcement      | 16            | **Must Have**   | ❌          |
 
 #### Key References
 
