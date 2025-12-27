@@ -6,6 +6,10 @@ __pycache__/
 *.py[cod]
 node_modules/
 # .github/
+.env
+.dev
+.dev/
+/.dev/
 cloudinary_python.txt
 **/._*
 ./._*
