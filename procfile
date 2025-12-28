@@ -1,1 +1,1 @@
-web: gunicorn study-stack.wsgi
+web: gunicorn study_stack.wsgi
