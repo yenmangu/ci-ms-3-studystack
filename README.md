@@ -101,7 +101,7 @@ I used [Coolors]() to generate the following pallete from my chosen colours.
 
 ## Project Planning & Agile Methodology
 
-The planning and design of **StudyStack** followed an agile, user-centred approach.
+The planning and design of **StudyStack** followed an Agile, user-centred approach.
 Project requirements were broken down into Epics and User Stories to ensure clear scope, traceability, and alignment with assessment criteria.
 
 > [View Epics and User Story Mapping](documentation/agile/epics.md)
@@ -294,7 +294,16 @@ All custom CSS adopts the BEM (Block, Element, Modifier) naming convention for m
 
 [GitHub Projects](https://github.com/users/yenmangu/projects/11) served as an Agile tool for this project. Through it, User Stories, issues/bugs, and Milestone tasks were planned, then subsequently tracked on a regular basis using the Kanban project board.
 
-![screenshot](documentation/agile/gh-projects.png)
+![screenshot](documentation/agile/screenshots/user-stories.png)
+
+#### Epics
+
+> [!TIP]
+> Each Epic represents a functional area of the system and contains multiple user stories that are delivered incrementally.
+
+User stories were grouped into Epics using custom fields within GitHub Projects to maintain clear traceability between planning and implementation.
+
+![Epic-gouped user stories with MoSCoW labels](documentation/agile/screenshots/epics-labels.png)
 
 ### GitHub Pages
 
