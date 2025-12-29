@@ -4,5 +4,12 @@ from django.http import HttpRequest, HttpResponse
 # Create your views here.
 
 
-def home_test(request: HttpRequest):
-    return HttpResponse("This would be the home page")
+def home(request: HttpRequest) -> HttpResponse:
+
+    context = {
+        "page_title": "StudyStack | Home",
+        "page_description": "Community-driven study resources shared by learners",
+        "page_keywords": "study resources, education, learning, StudyStack",
+    }
+
+    return render(request, "home/home.html", context)

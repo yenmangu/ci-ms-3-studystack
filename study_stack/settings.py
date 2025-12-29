@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/6.0/ref/settings/
 
 from pathlib import Path
 import os
+import sys
 import dj_database_url
 
 
@@ -21,6 +22,8 @@ if os.path.isfile("env.py"):
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+# Build path for template directory
+TEMPLATE_DIR = os.path.join(BASE_DIR, "templates")
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/6.0/howto/deployment/checklist/
@@ -53,11 +56,15 @@ INSTALLED_APPS = [
     "django.contrib.sites",
     "allauth",
     "allauth.account",
-    "allauth.socialaccount",
     "crispy_forms",
     "crispy_bootstrap5",
     "django_summernote",
+    "home",
 ]
+
+SITE_ID = 1
+LOGIN_REDIRECT_URL = "/"
+LOGOUT_REDIRECT_URL = "/"
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
@@ -76,7 +83,7 @@ ROOT_URLCONF = "study_stack.urls"
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "DIRS": [],
+        "DIRS": [TEMPLATE_DIR],
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [
@@ -96,8 +103,13 @@ WSGI_APPLICATION = "study_stack.wsgi.application"
 
 DATABASES = {"default": dj_database_url.parse(os.environ.get("DATABASE_URL"))}
 
+
+if "test" in sys.args:
+    DATABASES["default"]["ENGINE"] = "django.db.backends.sqlite3"
+
+
 # CSRF
-CSRF_TRUSTED_DOMAINS = ["https://*.codeinstitute-ide.net/", "https://*.herokuapp.com"]
+CSRF_TRUSTED_ORIGINS = ["https://*.codeinstitute-ide.net/", "https://*.herokuapp.com"]
 
 
 # Password validation
