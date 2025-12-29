@@ -9,6 +9,7 @@ This checklist is used to track implementation progress against the planned Epic
 - [x] Initial commit: project scaffold
 - [x] Create Django project and main app
 - [ ] Set up project structure (templates, static, media)
+- [x] Set up minimal view
 - [ ] Configure base template (`base.html`)
 - [ ] Add navigation bar with conditional auth links
 - [ ] Enable Django messages framework
@@ -20,7 +21,7 @@ This checklist is used to track implementation progress against the planned Epic
 
 **Epic 1 – Must Have**
 
-- [ ] Create home page view
+- [x] Create home page view
 - [ ] Add site purpose and description (StudyStack)
 - [ ] Add primary calls-to-action (Browse / Register / Login)
 - [ ] Link navigation to key pages
