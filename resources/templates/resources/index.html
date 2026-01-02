@@ -1,6 +1,6 @@
 {% extends "base.html" %}
+{% load static %}
 {% block content %}
-  {% load static %}
   <div class="container-fluid">
     {% for resource in resource_list %}
       <div class="row mt-2">
@@ -10,8 +10,8 @@
                  alt="placeholder image"
                  class="card-img-top">
           {% else %}
-            <img src="{{ post.featured_image.url }}"
-                 alt="{{ resoourceqqqqqq.title }}"
+            <img src="{{ resource.featured_image.url }}"
+                 alt="{{ resource.title }}"
                  class="card-img-top">
           {% endif %}
         </div>
