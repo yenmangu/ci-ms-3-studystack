@@ -2,6 +2,20 @@
 
 /* Global */
 
+html,
+body {
+	height: 100%;
+}
+
+body {
+	display: flex;
+	flex-direction: column;
+}
+
+main {
+	flex: 1;
+}
+
 /* body {
 	background-color: #f9fafc;
 } */
