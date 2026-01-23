@@ -1,5 +1,6 @@
 import django_filters as df
 from django.db.models import Q, Count
+from django import forms
 from .models import Resource, Subject
 
 
@@ -63,22 +64,26 @@ class ResourceFilter(df.FilterSet):
         if not selected_subjects:
             return queryset
 
-        selected_subject_ids = list(
-            selected_subjects.values_list(
-                "id",
-                flat=True,
-            )
-        )
-        selected_count = len(selected_count)
+        print(f"selected subjects values handed to filter: {selected_subjects}")
+
+        selected_subject_ids = [subject.id for subject in selected_subjects]
+
+        selected_count = len(selected_subject_ids)
 
         # 1) Keep resources that have at least the selected subjects
         # 2) Count how many of the selected subjects each resource matches
         # 3) Only keep resources where the match count equals number selected
 
-        return queryset.filter(subjects__in=selected_subject_ids).annotate(
-            matched_subject_count=Count(
-                "subjects", filter=Q(subjects__in=selected_subject_ids), distinct=True
-            ).filter(matched_subject_count=selected_count)
+        return (
+            queryset.filter(subjects__in=selected_subject_ids)
+            .annotate(
+                matched_subject_count=Count(
+                    "subjects",
+                    filter=Q(subjects__in=selected_subject_ids),
+                    distinct=True,
+                )
+            )
+            .filter(matched_subject_count=selected_count)
         )
 
     class Meta:
