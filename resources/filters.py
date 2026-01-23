@@ -32,6 +32,13 @@ class ResourceFilter(df.FilterSet):
     subjects = df.ModelMultipleChoiceFilter(
         queryset=Subject.objects.order_by("name"),
         method="filter_subjects_and",
+        label="Subjects",
+        widget=forms.SelectMultiple(
+            attrs={
+                "class": "form-select",
+                "aria-describedby": "subjects-help",
+            }
+        ),
     )
 
     created_on = df.DateRangeFilter(
