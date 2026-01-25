@@ -45,5 +45,6 @@
 	"terminal.integrated.gpuAcceleration": "auto",
 	"typescript.disableAutomaticTypeAcquisition": true,
 	"workbench.colorTheme": "Ayu Mirage Bordered",
-	"python.REPL.enableREPLSmartSend": false
+	"python.REPL.enableREPLSmartSend": false,
+	"jest.runMode": "on-demand"
 }
