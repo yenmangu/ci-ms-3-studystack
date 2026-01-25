@@ -8,26 +8,27 @@
       <div class="col-12 col-lg-8 mx-auto">
         <article class="card">
           {% with image=resource.featured_image %}
-            {% if image and image.public_id != "placeholder" %}
+            {% if image.public_id == "placeholder" %}
+              <img src="{% static 'images/default.jpg' %}"
+                   alt=""
+                   class="img-fluid"
+                   width="1200"
+                   height="675"
+                   loading="eager"
+                   decoding="async">
+            {% else %}
               {% cloudinary image
-              width=960
-              height=540
+              width=1200
+              height=675
               crop="fill"
               gravity="auto"
               fetch_format="auto"
               quality="auto"
-              class="card-img-top"
+              class="img-fluid"
               alt=resource.title
+              loading="eager"
+              decoding="async"
               %}
-            {% else %}
-              <img src="{% static 'images/default.jpg' %}"
-                   class="card-img-top"
-                   alt=""
-                   aria-hidden="true"
-                   width="960"
-                   height="540"
-                   loading="lazy"
-                   decoding="async">
             {% endif %}
           {% endwith %}
           <div class="card-body">
