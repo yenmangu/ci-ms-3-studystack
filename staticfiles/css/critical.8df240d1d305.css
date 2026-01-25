@@ -1,0 +1,73 @@
+/* This CSS is loaded as 'blocking' it includes critical CLS fixes */
+/* ----------------- Messages ----------------- */
+
+.messages-stack {
+	position: fixed;
+	top: 0.75rem;
+	left: 50%;
+	transform: translateX(-50%);
+	z-index: 2000;
+
+	width: min(720px, calc(100% - 2rem));
+	pointer-events: none;
+}
+
+.messages-stack .alert {
+	position: relative;
+	pointer-events: auto;
+	margin: 0;
+	border: 0;
+	border-radius: 0.75rem;
+	box-shadow: 0 12px 28px rgba(0, 0, 0, 0.18);
+	padding: 0.9rem 1rem;
+	background-color: rgba(255, 255, 255, 0.92);
+	backdrop-filter: saturate(110%) blur(2px);
+	background: linear-gradient(180deg, #ffffff 0%, #f8f9fa 100%);
+}
+
+.messages-stack .alert::before {
+	content: '';
+	position: absolute;
+	inset: 0 auto 0 0;
+	width: 6px;
+	border-radius: 0.9rem 0 0 0.9rem;
+	background-color: #868e96;
+}
+
+.messages-stack .alert.success::before {
+	background-color: var(--bs-success);
+}
+
+.messages-stack .alert.info::before {
+	background-color: var(--bs-info);
+}
+
+.messages-stack .alert.warning::before {
+	background-color: var(--bs-warning);
+}
+
+.messages-stack .alert.error::before {
+	background-color: var(--bs-danger);
+}
+
+.messages-stack .btn-close {
+	opacity: 0.75;
+}
+
+.messages-stack .btn-close:hover,
+.messages-stack .btn-close:focus {
+	opacity: 1;
+}
+
+.messages-stack .container {
+	max-height: 40vh;
+	overflow: auto;
+}
+.resource-list {
+	min-height: 500px;
+}
+
+.card-img-top {
+	aspect-ratio: 16 / 9;
+	object-fit: cover;
+}
