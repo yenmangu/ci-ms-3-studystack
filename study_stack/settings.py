@@ -177,6 +177,9 @@ LOGOUT_REDIRECT_URL = "/"
 
 REFERRER_POLICY = "origin"
 
+# Adapter for messages
+ACCOUNT_ADAPTER = "resources.adapters.NoAuthMessageAdapter"
+
 # TinyMCE
 TINYMCE_JS_URL = f"https://cdn.tiny.cloud/1/{TINY_MCE_KEY}/tinymce/8/tinymce.min.js"
 TINYMCE_COMPRESSOR = False

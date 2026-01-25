@@ -37,9 +37,10 @@
           integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB"
           crossorigin="anonymous"
           defer>
-    <!-- FontAwesome CSS -->
-    <!-- Custom CSS -->
+    <!-- Critical blocking CSS -->
+    <link rel="stylesheet" href="{% static 'css/critical.css' %}">
     <link rel="stylesheet" href="{% static 'css/theme.css' %}">
+    <!-- Custom deferred loading CSS -->
     <link rel="stylesheet"
           href="{% static 'css/style.css' %}"
           media="print"
@@ -88,22 +89,23 @@
         </div>
       </div>
     </nav>
-    <!-- Display Django messages -->
-    <div class="container">
-      <div class="row">
-        <div class="col-md-8 offset-md-2">
-          {% for message in messages %}
-            <div class="alert {{ message.tags }} alert-dismissible fade show"
-                 id="msg-{{ forloop.counter }}"
-                 role="alert"
-                 aria-live="assertive">
-              {{ message | safe }}
-              <button type="button"
-                      class="btn-close"
-                      data-bs-dismiss="alert"
-                      aria-label="Close"></button>
-            </div>
-          {% endfor %}
+    <!-- Refined Django messages -->
+    <div class="messages-stack" aria-live="assertive">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-8 offset-md-2">
+            {% for message in messages %}
+              <div class="alert {{ message.tags }} alert-dismissible fade show"
+                   id="msg-{{ forloop.counter }}"
+                   role="alert">
+                {{ message|safe }}
+                <button type="button"
+                        class="btn-close"
+                        data-bs-dismiss="alert"
+                        aria-label="Close"></button>
+              </div>
+            {% endfor %}
+          </div>
         </div>
       </div>
     </div>
