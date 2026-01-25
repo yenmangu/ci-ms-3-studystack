@@ -135,14 +135,63 @@ The deployed application was tested on the following browsers:
 
 ## Lighthouse Audit
 
-Lighthouse audits were run on key pages using Chrome DevTools.
+Lighthouse audits were conducted using Chrome DevTools on key user-facing pages to assess performance, accessibility, best practices, and SEO. Tests were run in both **mobile** and **desktop** modes using Lighthouse’s default throttling profiles.
 
-| Page            | Mobile | Desktop   |
-| --------------- | ------ | --------- |
-| Home            | Good   | Excellent |
-| Resource Detail | Good   | Excellent |
+Screenshots of the audit results are stored in `documentation/lighthouse/reports/`.
 
-Lower mobile scores are primarily due to image loading and third-party resources and are within acceptable limits.
+### Lighthouse Results Table
+
+| Page / View                     | Mobile Result | Desktop Result | Screenshot                                                                                                                                                |
+| ------------------------------- | ------------- | -------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Home                            | Good          | Excellent      | [Desktop](documentation/lighthouse/reports/home-desktop.png) · [Mobile](documentation/lighthouse/reports/home-mobile.png)                                 |
+| Browse by Subject               | Good          | Excellent      | [Desktop](documentation/lighthouse/reports/browse-subjects-desktop.png) · [Mobile](documentation/lighthouse/reports/browse-subjects-mobile.png)           |
+| Resource Detail                 | Good          | Excellent      | [Desktop](documentation/lighthouse/reports/detail-desktop.png) · [Mobile](documentation/lighthouse/reports/detail-mobile.png)                             |
+| Resource Detail (No Comments)   | Good          | Excellent      | [Desktop](documentation/lighthouse/reports/detail-no-comments-desktop.png) · [Mobile](documentation/lighthouse/reports/detail-no-comments-mobile.png)     |
+| Resource Detail (With Comments) | Good          | Excellent      | [Desktop](documentation/lighthouse/reports/detail-with-comments-desktop.png) · [Mobile](documentation/lighthouse/reports/detail-with-comments-mobile.png) |
+| Filtered Results                | Good          | Excellent      | [Desktop](documentation/lighthouse/reports/filter-results-desktop.png) · [Mobile](documentation/lighthouse/reports/filter-results-mobile.png)             |
+| Create Resource                 | Excellent     | Excellent      | [Desktop](documentation/lighthouse/reports/create-desktop.png) · [Mobile](documentation/lighthouse/reports/create-mobile.png)                             |
+| Sign In                         | Excellent     | Excellent      | [Desktop](documentation/lighthouse/reports/sign-in-desktop.png) · [Mobile](documentation/lighthouse/reports/sign-in-mobile.png)                           |
+| Sign Up                         | Excellent     | Excellent      | [Desktop](documentation/lighthouse/reports/signup-desktop.png) · [Mobile](documentation/lighthouse/reports/signup-mobile.png)                             |
+| Logout                          | Excellent     | Excellent      | [Desktop](documentation/lighthouse/reports/logout-desktop.png) · [Mobile](documentation/lighthouse/reports/logout-mobile.png)                             |
+
+### Notes on Results
+
+Desktop Lighthouse audits consistently achieved **Excellent** scores due to higher available bandwidth and the absence of simulated network throttling. Mobile audits achieved **Good** results, with minor reductions primarily caused by Lighthouse’s slow network simulation, initial image loading costs, and the presence of render-blocking CSS required for layout stability.
+
+Some stylesheets (Bootstrap and theme-level CSS variables) are intentionally render-blocking to ensure visual consistency and prevent layout shift during initial paint. During optimisation, deferring theme-level CSS resulted in increased layout shift and reduced Lighthouse scores. The final implementation therefore reflects a deliberate trade-off favouring visual stability (CLS = 0) over aggressive CSS deferral, while still deferring non-critical styles where appropriate.
+
+These differences are expected and acceptable for real-world mobile usage.
+
+### Image Optimisation & CLS Fix
+
+Initial Lighthouse audits identified a significant layout shift caused by an
+oversized default placeholder image (over 4500px wide) being rendered at card
+dimensions (~640px).
+
+This was resolved by:
+
+- resizing the default placeholder image to an appropriate maximum size,
+- generating modern formats (AVIF / WebP),
+- ensuring explicit width and height attributes were applied.
+
+After optimisation:
+
+- **CLS was reduced to 0.048**, within the “Good” Core Web Vitals threshold.
+
+  > [!NOTE]
+  > This value falls well within Google’s “Good” Core Web Vitals threshold (CLS ≤ 0.1).
+
+- **LCP improved to ~2.0s** on mobile.
+- No layout shift culprits were reported for the main content container.
+
+### Performance Optimisations Applied
+
+- Deferred non-critical custom stylesheets using the `media="print"` and `onload` technique.
+- Optimised resource card images via Cloudinary automatic format and quality selection.
+- Enabled lazy-loading for below-the-fold images.
+- Loaded JavaScript files using the `defer` attribute to avoid blocking the critical rendering path.
+
+Bootstrap CSS was intentionally kept render-blocking to preserve layout integrity during initial page render.
 
 ---
 
