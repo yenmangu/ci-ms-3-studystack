@@ -192,6 +192,17 @@ When filters are applied, the resulting resource list updates immediately, refle
 selected criteria. If no resources match the chosen filters, an explicit empty-state message
 is displayed to inform the user that no results were found, rather than presenting a blank page.
 
+##### User Feedback Messages
+
+StudyStack provides clear, accessible feedback messages to inform users about the outcome of their actions. Messages are visually distinct, colour-coded by intent, and announced to assistive technologies via an ARIA live region.
+
+| Message Type | Purpose / When It Appears                                                                                                   | Visual Indicator                                                               | Example Screenshot                                                       |
+| ------------ | --------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------ |
+| Success      | Displayed when an action completes successfully (e.g. login, resource creation, update, or deletion).                       | Green accent strip and success styling to clearly confirm a positive outcome.  | ![Success message example](./documentation/features/message-success.png) |
+| Info         | Used for neutral, informational feedback that does not indicate success or failure (e.g. filters applied, general notices). | Blue accent strip with neutral background styling for clarity without urgency. | ![Info message example](./documentation/features/message-info.png)       |
+| Warning      | Shown when user attention is required but no error has occurred (e.g. non-blocking issues or important notices).            | Amber accent strip to indicate caution while remaining non-critical.           | ![Warning message example](./documentation/features/message-warning.png) |
+| Error        | Displayed when an action fails or cannot be completed (e.g. form validation errors or permission issues).                   | Red accent strip and high-contrast styling to clearly communicate failure.     | ![Error message example](./documentation/features/message-error.png)     |
+
 All feedback messages are presented using Django’s built-in messaging framework and rendered
 as accessible alerts. These messages are announced to assistive technologies using appropriate
 ARIA roles, ensuring that screen reader users receive the same feedback as sighted users.
@@ -469,10 +480,10 @@ Accessibility was evaluated throughout development using:
 
 ### Other Credits
 
-| Material                                 | Source                                                   |
-| ---------------------------------------- | -------------------------------------------------------- |
-| CSS - Block, Element, Modifider Strategy | [BEM-101 on CSS-Tricks](https://css-tricks.com/bem-101/) |
-|                                          |                                                          |
+| Material                                 | Source                                                                       |
+| ---------------------------------------- | ---------------------------------------------------------------------------- |
+| CSS - Block, Element, Modifider Strategy | [BEM-101 on CSS-Tricks](https://css-tricks.com/bem-101/)                     |
+| Defer non-critical CSS                   | [Demián Renzulli - web.dev](https://web.dev/articles/defer-non-critical-css) |
 
 ### Content
 
