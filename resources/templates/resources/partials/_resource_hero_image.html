@@ -1,0 +1,35 @@
+{% load static %}
+{% load cloudinary %}
+{% with image=resource.featured_image %}
+  {% if image.public_id == "placeholder" %}
+    <picture>
+      <source type="image/avif"
+              srcset="{% static 'images/default-480.avif' %} 480w,
+                      {% static 'images/default-768.avif' %} 768w,
+                      {% static 'images/default-1200.avif' %} 1200w"
+              sizes="(max-width: 768px) 100vw,
+                     1200px">
+      <source type="image/webp"
+              srcset="{% static 'images/default-480.webp' %} 480w,
+                      {% static 'images/default-768.webp' %} 768w,
+                      {% static 'images/default-1200.webp' %} 1200w"
+              sizes="(max-width: 768px) 100vw,
+                     1200px">
+      <img src="{% static 'images/default-1200.jpg' %}"
+           alt=""
+           class="img-fluid"
+           width="1200"
+           height="675"
+           loading="eager"
+           decoding="async">
+    </picture>
+  {% else %}
+    <img src="{% cloudinary_url image width=1200 height=675 crop='fill' gravity='auto' fetch_format='auto' quality='auto' %}"
+         alt="{{ resource.title }}"
+         class="img-fluid"
+         width="1200"
+         height="675"
+         loading="eager"
+         decoding="async">
+  {% endif %}
+{% endwith %}
