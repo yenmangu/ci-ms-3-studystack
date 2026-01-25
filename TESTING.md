@@ -141,18 +141,18 @@ Screenshots of the audit results are stored in `documentation/lighthouse/reports
 
 ### Lighthouse Results Table
 
-| Page / View                     | Mobile Result | Desktop Result | Screenshot                                                                                                                                                |
-| ------------------------------- | ------------- | -------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Home                            | Good          | Excellent      | [Desktop](documentation/lighthouse/reports/home-desktop.png) · [Mobile](documentation/lighthouse/reports/home-mobile.png)                                 |
-| Browse by Subject               | Good          | Excellent      | [Desktop](documentation/lighthouse/reports/browse-subjects-desktop.png) · [Mobile](documentation/lighthouse/reports/browse-subjects-mobile.png)           |
-| Resource Detail                 | Good          | Excellent      | [Desktop](documentation/lighthouse/reports/detail-desktop.png) · [Mobile](documentation/lighthouse/reports/detail-mobile.png)                             |
-| Resource Detail (No Comments)   | Good          | Excellent      | [Desktop](documentation/lighthouse/reports/detail-no-comments-desktop.png) · [Mobile](documentation/lighthouse/reports/detail-no-comments-mobile.png)     |
-| Resource Detail (With Comments) | Good          | Excellent      | [Desktop](documentation/lighthouse/reports/detail-with-comments-desktop.png) · [Mobile](documentation/lighthouse/reports/detail-with-comments-mobile.png) |
-| Filtered Results                | Good          | Excellent      | [Desktop](documentation/lighthouse/reports/filter-results-desktop.png) · [Mobile](documentation/lighthouse/reports/filter-results-mobile.png)             |
-| Create Resource                 | Excellent     | Excellent      | [Desktop](documentation/lighthouse/reports/create-desktop.png) · [Mobile](documentation/lighthouse/reports/create-mobile.png)                             |
-| Sign In                         | Excellent     | Excellent      | [Desktop](documentation/lighthouse/reports/sign-in-desktop.png) · [Mobile](documentation/lighthouse/reports/sign-in-mobile.png)                           |
-| Sign Up                         | Excellent     | Excellent      | [Desktop](documentation/lighthouse/reports/signup-desktop.png) · [Mobile](documentation/lighthouse/reports/signup-mobile.png)                             |
-| Logout                          | Excellent     | Excellent      | [Desktop](documentation/lighthouse/reports/logout-desktop.png) · [Mobile](documentation/lighthouse/reports/logout-mobile.png)                             |
+| Page / View                     | Mobile Result | Desktop Result | Desktop Screenshot                                                                   | Mobile Screenshot                                                                   |
+| ------------------------------- | ------------- | -------------- | ------------------------------------------------------------------------------------ | ----------------------------------------------------------------------------------- | --- |
+| Home                            | Good          | Excellent      | [View screenshot](documentation/lighthouse/reports/home-desktop.png)                 | [View screenshot](documentation/lighthouse/reports/home-mobile.png)                 |
+| Browse by Subject               | Good          | Excellent      | [View screenshot](documentation/lighthouse/reports/browse-subjects-desktop.png)      | [View screenshot](documentation/lighthouse/reports/browse-subjects-mobile.png)      |
+| Resource Detail                 | Good          | Excellent      | [View screenshot](documentation/lighthouse/reports/detail-desktop.png)               | [View screenshot](documentation/lighthouse/reports/detail-mobile.png)               |
+| Resource Detail (No Comments)   | Good          | Excellent      | [View screenshot](documentation/lighthouse/reports/detail-no-comments-desktop.png)   | [View screenshot](documentation/lighthouse/reports/detail-no-comments-mobile.png)   |
+| Resource Detail (With Comments) | Good          | Excellent      | [View screenshot](documentation/lighthouse/reports/detail-with-comments-desktop.png) | [View screenshot](documentation/lighthouse/reports/detail-with-comments-mobile.png) |
+| Filtered Results                | Good          | Excellent      | [View screenshot](documentation/lighthouse/reports/filter-results-desktop.png)       | [View screenshot](documentation/lighthouse/reports/filter-results-mobile.png)       |
+| Create Resource                 | Excellent     | Excellent      | [View screenshot](documentation/lighthouse/reports/create-desktop.png)               | [View screenshot](documentation/lighthouse/reports/create-mobile.png)               |
+| Sign In                         | Excellent     | Excellent      | [View screenshot](documentation/lighthouse/reports/sign-in-desktop.png)              | [View screenshot](documentation/lighthouse/reports/sign-in-mobile.png)              |
+| Sign Up                         | Excellent     | Excellent      | [View screenshot](documentation/lighthouse/reports/signup-desktop.png)               | [View screenshot](documentation/lighthouse/reports/signup-mobile.png)               |
+| Logout                          | Excellent     | Excellent      | [View screenshot](documentation/lighthouse/reports/logout-desktop.png)               | [View screenshot](documentation/lighthouse/reports/logout-mobile.png)               |     |
 
 ### Notes on Results
 
@@ -192,6 +192,8 @@ After optimisation:
 - Loaded JavaScript files using the `defer` attribute to avoid blocking the critical rendering path.
 
 Bootstrap CSS was intentionally kept render-blocking to preserve layout integrity during initial page render.
+
+These decisions reflect an understanding of real-world performance trade-offs, prioritising layout stability and user experience over artificially maximised audit scores.
 
 ---
 
