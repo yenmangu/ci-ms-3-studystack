@@ -7,6 +7,20 @@
     <div class="row">
       <div class="col-12 col-lg-8 mx-auto">
         <article class="card">
+          {% with image=resource.featured_image %}
+            {% if image and image.public_id != "placeholder" %}
+              <img src="{{ image.url }}"
+                   class="card-img-top"
+                   alt="{{ resource.title }}"
+                   loading="lazy"
+                   decoding="async">
+            {% else %}
+              <img src="{% static 'images/default.jpg' %}"
+                   class="card-img-top"
+                   alt=""
+                   aria-hidden="true">
+            {% endif %}
+          {% endwith %}
           <div class="card-body">
             <!-- Resource Title -->
             <header class="mb-3">
