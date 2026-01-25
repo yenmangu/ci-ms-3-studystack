@@ -78,26 +78,37 @@
                    width="640"
                    height="360">
             {% else %}
-              {% cloudinary image
-              width=640
-              height=360
-              crop="fill"
-              gravity="auto"
-              fetch_format="auto"
-              quality="auto"
-              class="card-img-top"
-              alt=resource.title
-              loading="
               {% if forloop.counter <= 2 %}
-                eager
+                {% with loading_mode="eager" %}
+                  {% cloudinary image
+                  width=640
+                  height=360
+                  crop="fill"
+                  gravity="auto"
+                  fetch_format="auto"
+                  quality="auto"
+                  class="card-img-top"
+                  alt=resource.title
+                  loading=loading_mode
+                  decoding="async"
+                  %}
+                {% endwith %}
               {% else %}
-                lazy
+                {% with loading_mode="lazy" %}
+                  {% cloudinary image
+                  width=640
+                  height=360
+                  crop="fill"
+                  gravity="auto"
+                  fetch_format="auto"
+                  quality="auto"
+                  class="card-img-top"
+                  alt=resource.title
+                  loading=loading_mode
+                  decoding="async"
+                  %}
+                {% endwith %}
               {% endif %}
-              "
-              decoding="async"
-              %}
-            {% else %}
-              <img src="{{ image.url }}" alt="{{ resource.title }}" class="card-img-top">
             {% endif %}
           {% endwith %}
         </div>
