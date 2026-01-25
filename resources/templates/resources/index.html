@@ -71,8 +71,31 @@
           {% with image=resource.featured_image %}
             {% if image.public_id == "placeholder" %}
               <img src="{% static 'images/default.jpg' %}"
-                   alt="placeholder image"
-                   class="card-img-top">
+                   alt=""
+                   class="card-img-top"
+                   loading="lazy"
+                   decoding="async"
+                   width="640"
+                   height="360">
+            {% else %}
+              {% cloudinary image
+              width=640
+              height=360
+              crop="fill"
+              gravity="auto"
+              fetch_format="auto"
+              quality="auto"
+              class="card-img-top"
+              alt=resource.title
+              loading="
+              {% if forloop.counter <= 2 %}
+                eager
+              {% else %}
+                lazy
+              {% endif %}
+              "
+              decoding="async"
+              %}
             {% else %}
               <img src="{{ image.url }}" alt="{{ resource.title }}" class="card-img-top">
             {% endif %}
