@@ -201,6 +201,6 @@
 {% endblock content %}
 {% block extras %}
   {% if user.is_authenticated or user.is_superuser %}
-    <script src="{% static 'js/resourceDetail.js' %}"></script>
+    <script src="{% static 'js/resourceDetail.js' %}" defer></script>
   {% endif %}
 {% endblock extras %}
