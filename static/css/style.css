@@ -134,6 +134,7 @@ ol.breadcrumb {
 
 .resource-list {
 	margin-top: 4rem;
+	min-height: 500px;
 }
 
 .card {
@@ -257,6 +258,11 @@ form#CommentForm {
 .card-link .card-title {
 	text-decoration: underline;
 	color: rgba(var(--bs-link-color-rgb), var(--bs-link-opacity, 1));
+}
+
+.card-img-top {
+	aspect-ratio: 16 / 9;
+	object-fit: cover;
 }
 
 /* ----------------- Comments ----------------- */
