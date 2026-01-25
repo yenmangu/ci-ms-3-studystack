@@ -215,13 +215,24 @@ Manual testing was carried out to ensure the application behaves safely and pred
 
 User stories were manually verified against acceptance criteria.
 
-| User Story      | Expected Outcome                     | Result |
-| --------------- | ------------------------------------ | ------ |
-| View resources  | Users can browse published resources | Pass   |
-| Create resource | Logged-in users can submit content   | Pass   |
-| Edit resource   | Authors can update their content     | Pass   |
-| Delete resource | Authors can remove their content     | Pass   |
-| Manage drafts   | Drafts hidden from public users      | Pass   |
+| User Story               | Description                             | Test Performed                                       | Result |
+| ------------------------ | --------------------------------------- | ---------------------------------------------------- | ------ |
+| View home page           | User can view the landing page          | Loaded home page as anonymous and authenticated user | Pass   |
+| Browse resources         | User can browse all published resources | Verified resource list shows only published items    | Pass   |
+| View resource detail     | User can view a single resource         | Opened resource detail page via list and direct URL  | Pass   |
+| Security and permissions | Access restricted based on user role    | Tested access as anonymous, author, and non-author   | Pass   |
+| Login / logout           | User can log in and log out             | Logged in, logged out, verified session state        | Pass   |
+| Register account         | User can create an account              | Registered new user and verified login success       | Pass   |
+| Validation and errors    | Errors shown for invalid actions        | Submitted invalid forms and checked error feedback   | Pass   |
+| Admin manage content     | Admin can manage content                | Verified admin CRUD via Django admin                 | Pass   |
+| Delete comment           | User can delete own comment             | Deleted own comment; blocked deletion by other users | Pass   |
+| Edit resource            | Author can edit own resource            | Edited resource; verified updates persisted          | Pass   |
+| Add comment              | Logged-in user can add comments         | Added comment; verified display and association      | Pass   |
+| Create resource          | Logged-in user can create a resource    | Created resource; verified saved as draft/published  | Pass   |
+| Delete resource          | Author can delete own resource          | Deleted resource; confirmed DB record removal        | Pass   |
+| Filter resources         | User can filter resources               | Applied filters and verified result set              | Pass   |
+| Search resources         | User can search for resources           | Performed keyword search and validated results       | Pass   |
+| Responsive design        | Site works across screen sizes          | Tested layouts on mobile, tablet, and desktop        | Pass   |
 
 ---
 
