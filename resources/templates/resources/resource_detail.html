@@ -10,13 +10,23 @@
           {% with image=resource.featured_image %}
             {% if image.public_id == "placeholder" %}
               <picture>
-                <source srcset="{% static 'images/default.avif' %}" type="image/avif">
-                <source srcset="{% static 'images/default.webp' %}" type="image/webp">
-                <img src="{% static 'images/default.jpg' %}"
+                <source type="image/avif"
+                        srcset="{% static 'images/default-480.avif' %} 480w,
+                                {% static 'images/default-768.avif' %} 768w,
+                                {% static 'images/default-1200.avif' %} 1200w"
+                        sizes="(max-width: 768px) 100vw,
+                               640px">
+                <source type="image/webp"
+                        srcset="{% static 'images/default-480.webp' %} 480w,
+                                {% static 'images/default-768.webp' %} 768w,
+                                {% static 'images/default-1200.webp' %} 1200w"
+                        sizes="(max-width: 768px) 100vw,
+                               640px">
+                <img src="{% static 'images/default-1200.jpg' %}"
                      alt="placeholder image"
                      class="card-img-top"
                      width="640"
-                     height="360"
+                     height="427"
                      loading="lazy"
                      decoding="async">
               </picture>
