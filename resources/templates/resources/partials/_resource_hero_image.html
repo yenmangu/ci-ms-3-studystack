@@ -24,7 +24,7 @@
            decoding="async">
     </picture>
   {% else %}
-    <img src="{% cloudinary_url image width=1200 height=675 crop='fill' gravity='auto' fetch_format='auto' quality='auto' %}"
+    <img src="{% cloudinary_url image crop='fill' gravity='auto' fetch_format='auto' quality='auto' %}"
          alt="{{ resource.title }}"
          class="img-fluid"
          width="1200"
