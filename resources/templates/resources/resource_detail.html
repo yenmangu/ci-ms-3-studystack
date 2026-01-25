@@ -9,13 +9,17 @@
         <article class="card">
           {% with image=resource.featured_image %}
             {% if image.public_id == "placeholder" %}
-              <img src="{% static 'images/default.jpg' %}"
-                   alt=""
-                   class="img-fluid"
-                   width="1200"
-                   height="675"
-                   loading="eager"
-                   decoding="async">
+              <picture>
+                <source srcset="{% static 'images/default.avif' %}" type="image/avif">
+                <source srcset="{% static 'images/default.webp' %}" type="image/webp">
+                <img src="{% static 'images/default.jpg' %}"
+                     alt="placeholder image"
+                     class="card-img-top"
+                     width="640"
+                     height="360"
+                     loading="lazy"
+                     decoding="async">
+              </picture>
             {% else %}
               {% cloudinary image
               width=1200
