@@ -158,7 +158,7 @@ Screenshots of the audit results are stored in `documentation/lighthouse/reports
 
 Desktop Lighthouse audits consistently achieved **Excellent** scores due to higher available bandwidth and the absence of simulated network throttling. Mobile audits achieved **Good** results, with minor reductions primarily caused by Lighthouse’s slow network simulation, initial image loading costs, and the presence of render-blocking CSS required for layout stability.
 
-Some stylesheets (Bootstrap and theme-level CSS variables) are intentionally render-blocking to ensure visual consistency and prevent layout shift during initial paint. During optimisation, deferring theme-level CSS resulted in increased layout shift and reduced Lighthouse scores. The final implementation therefore reflects a deliberate trade-off favouring visual stability (CLS = 0) over aggressive CSS deferral, while still deferring non-critical styles where appropriate.
+Some stylesheets (Bootstrap and theme-level CSS variables) are intentionally render-blocking to ensure visual consistency and prevent layout shift during initial paint. During optimisation, deferring theme-level CSS resulted in increased layout shift and reduced Lighthouse scores. The final implementation therefore reflects a deliberate trade-off favouring visual stability (CLS within “Good” thresholds) over aggressive CSS deferral
 
 These differences are expected and acceptable for real-world mobile usage.
 
