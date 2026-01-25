@@ -39,7 +39,20 @@
           defer>
     <!-- FontAwesome CSS -->
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet"
+          href="{% static 'css/theme.css' %}"
+          media="print"
+          onload="this.media='all'">
+    <noscript>
+      <link rel="stylesheet" href="{% static 'css/theme.css' %}">
+    </noscript>
+    <link rel="stylesheet"
+          href="{% static 'css/style.css' %}"
+          media="print"
+          onload="this.media='all'">
+    <noscript>
+      <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    </noscript>
     {% block extra_css %}
     {% endblock extra_css %}
   </head>
