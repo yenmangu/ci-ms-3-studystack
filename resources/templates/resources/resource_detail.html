@@ -9,16 +9,25 @@
         <article class="card">
           {% with image=resource.featured_image %}
             {% if image and image.public_id != "placeholder" %}
-              <img src="{{ image.url }}"
-                   class="card-img-top"
-                   alt="{{ resource.title }}"
-                   loading="lazy"
-                   decoding="async">
+              {% cloudinary image
+              width=960
+              height=540
+              crop="fill"
+              gravity="auto"
+              fetch_format="auto"
+              quality="auto"
+              class="card-img-top"
+              alt=resource.title
+              %}
             {% else %}
               <img src="{% static 'images/default.jpg' %}"
                    class="card-img-top"
                    alt=""
-                   aria-hidden="true">
+                   aria-hidden="true"
+                   width="960"
+                   height="540"
+                   loading="lazy"
+                   decoding="async">
             {% endif %}
           {% endwith %}
           <div class="card-body">
