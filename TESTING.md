@@ -142,7 +142,7 @@ Screenshots of the audit results are stored in `documentation/lighthouse/reports
 ### Lighthouse Results Table
 
 | Page / View                     | Mobile Result | Desktop Result | Desktop Screenshot                                                                   | Mobile Screenshot                                                                   |
-| ------------------------------- | ------------- | -------------- | ------------------------------------------------------------------------------------ | ----------------------------------------------------------------------------------- | --- |
+| ------------------------------- | ------------- | -------------- | ------------------------------------------------------------------------------------ | ----------------------------------------------------------------------------------- |
 | Home                            | Good          | Excellent      | [View screenshot](documentation/lighthouse/reports/home-desktop.png)                 | [View screenshot](documentation/lighthouse/reports/home-mobile.png)                 |
 | Browse by Subject               | Good          | Excellent      | [View screenshot](documentation/lighthouse/reports/browse-subjects-desktop.png)      | [View screenshot](documentation/lighthouse/reports/browse-subjects-mobile.png)      |
 | Resource Detail                 | Good          | Excellent      | [View screenshot](documentation/lighthouse/reports/detail-desktop.png)               | [View screenshot](documentation/lighthouse/reports/detail-mobile.png)               |
@@ -152,7 +152,7 @@ Screenshots of the audit results are stored in `documentation/lighthouse/reports
 | Create Resource                 | Excellent     | Excellent      | [View screenshot](documentation/lighthouse/reports/create-desktop.png)               | [View screenshot](documentation/lighthouse/reports/create-mobile.png)               |
 | Sign In                         | Excellent     | Excellent      | [View screenshot](documentation/lighthouse/reports/sign-in-desktop.png)              | [View screenshot](documentation/lighthouse/reports/sign-in-mobile.png)              |
 | Sign Up                         | Excellent     | Excellent      | [View screenshot](documentation/lighthouse/reports/signup-desktop.png)               | [View screenshot](documentation/lighthouse/reports/signup-mobile.png)               |
-| Logout                          | Excellent     | Excellent      | [View screenshot](documentation/lighthouse/reports/logout-desktop.png)               | [View screenshot](documentation/lighthouse/reports/logout-mobile.png)               |     |
+| Logout                          | Excellent     | Excellent      | [View screenshot](documentation/lighthouse/reports/logout-desktop.png)               | [View screenshot](documentation/lighthouse/reports/logout-mobile.png)               |
 
 ### Notes on Results
 
