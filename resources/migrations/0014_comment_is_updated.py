@@ -6,13 +6,13 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('resources', '0013_comment_updated_on'),
+        ("resources", "0013_comment_updated_on"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='comment',
-            name='is_updated',
+            model_name="comment",
+            name="is_updated",
             field=models.BooleanField(default=False),
         ),
     ]

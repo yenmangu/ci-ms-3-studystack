@@ -6,13 +6,17 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('resources', '0005_alter_resource_status'),
+        ("resources", "0005_alter_resource_status"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='resource',
-            name='status',
-            field=models.CharField(choices=[('d', 'Draft'), ('p', 'Published'), ('w', 'Withdrawn')], default='d', max_length=1),
+            model_name="resource",
+            name="status",
+            field=models.CharField(
+                choices=[("d", "Draft"), ("p", "Published"), ("w", "Withdrawn")],
+                default="d",
+                max_length=1,
+            ),
         ),
     ]

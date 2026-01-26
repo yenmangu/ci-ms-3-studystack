@@ -7,13 +7,15 @@ from django.db import migrations
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('resources', '0003_resource_resource_link'),
+        ("resources", "0003_resource_resource_link"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='resource',
-            name='featured_image',
-            field=cloudinary.models.CloudinaryField(default='placeholder', max_length=255, verbose_name='image'),
+            model_name="resource",
+            name="featured_image",
+            field=cloudinary.models.CloudinaryField(
+                default="placeholder", max_length=255, verbose_name="image"
+            ),
         ),
     ]

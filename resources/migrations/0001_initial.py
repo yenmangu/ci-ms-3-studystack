@@ -15,37 +15,86 @@ class Migration(migrations.Migration):
 
     operations = [
         migrations.CreateModel(
-            name='Subject',
+            name="Subject",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('name', models.CharField(max_length=200, unique=True)),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("name", models.CharField(max_length=200, unique=True)),
             ],
         ),
         migrations.CreateModel(
-            name='Resource',
+            name="Resource",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('title', models.CharField(max_length=200)),
-                ('slug', models.SlugField(max_length=200, unique=True)),
-                ('description', models.TextField()),
-                ('author', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='resources', to=settings.AUTH_USER_MODEL)),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("title", models.CharField(max_length=200)),
+                ("slug", models.SlugField(max_length=200, unique=True)),
+                ("description", models.TextField()),
+                (
+                    "author",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        related_name="resources",
+                        to=settings.AUTH_USER_MODEL,
+                    ),
+                ),
             ],
         ),
         migrations.CreateModel(
-            name='SubjectResourceJoin',
+            name="SubjectResourceJoin",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('resource', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='resources.resource')),
-                ('subject', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='resources.subject')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                (
+                    "resource",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        to="resources.resource",
+                    ),
+                ),
+                (
+                    "subject",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        to="resources.subject",
+                    ),
+                ),
             ],
         ),
         migrations.AddField(
-            model_name='resource',
-            name='subjects',
-            field=models.ManyToManyField(related_name='all_resources', through='resources.SubjectResourceJoin', to='resources.subject'),
+            model_name="resource",
+            name="subjects",
+            field=models.ManyToManyField(
+                related_name="all_resources",
+                through="resources.SubjectResourceJoin",
+                to="resources.subject",
+            ),
         ),
         migrations.AddConstraint(
-            model_name='subjectresourcejoin',
-            constraint=models.UniqueConstraint(fields=('resource', 'subject'), name='unique_subject_resource'),
+            model_name="subjectresourcejoin",
+            constraint=models.UniqueConstraint(
+                fields=("resource", "subject"), name="unique_subject_resource"
+            ),
         ),
     ]

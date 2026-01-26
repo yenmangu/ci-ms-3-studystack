@@ -7,24 +7,28 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('resources', '0001_initial'),
+        ("resources", "0001_initial"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='resource',
-            name='created_on',
-            field=models.DateTimeField(auto_now_add=True, default=django.utils.timezone.now),
+            model_name="resource",
+            name="created_on",
+            field=models.DateTimeField(
+                auto_now_add=True, default=django.utils.timezone.now
+            ),
             preserve_default=False,
         ),
         migrations.AddField(
-            model_name='resource',
-            name='status',
-            field=models.IntegerField(choices=[(0, 'Draft'), (1, 'Published')], default=0),
+            model_name="resource",
+            name="status",
+            field=models.IntegerField(
+                choices=[(0, "Draft"), (1, "Published")], default=0
+            ),
         ),
         migrations.AddField(
-            model_name='resource',
-            name='updated_on',
+            model_name="resource",
+            name="updated_on",
             field=models.DateTimeField(auto_now=True),
         ),
     ]

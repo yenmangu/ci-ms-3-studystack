@@ -6,13 +6,16 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('resources', '0004_resource_featured_image'),
+        ("resources", "0004_resource_featured_image"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='resource',
-            name='status',
-            field=models.IntegerField(choices=[('d', 'Draft'), ('p', 'Published'), ('w', 'Withdrawn')], default=0),
+            model_name="resource",
+            name="status",
+            field=models.IntegerField(
+                choices=[("d", "Draft"), ("p", "Published"), ("w", "Withdrawn")],
+                default=0,
+            ),
         ),
     ]

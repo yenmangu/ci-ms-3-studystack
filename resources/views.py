@@ -1,7 +1,6 @@
 from typing import Any
 from django.http import HttpRequest, HttpResponse, HttpResponseRedirect
-from django import forms
-from django.shortcuts import render, get_object_or_404, redirect
+from django.shortcuts import get_object_or_404, redirect
 from django.urls import reverse, reverse_lazy
 from django.db.models import Q, Count
 from django.views import generic
@@ -10,7 +9,6 @@ from django.views.decorators.http import require_POST
 from django.contrib import messages
 from django.contrib.messages.views import SuccessMessageMixin
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
-from tinymce.widgets import TinyMCE
 from view_breadcrumbs import (
     ListBreadcrumbMixin,
     DetailBreadcrumbMixin,
@@ -117,7 +115,6 @@ class ResourceList(
             "resource_filter",
             None,
         )
-        page_obj = context.get("page_obj")
         return context
 
 
@@ -173,8 +170,6 @@ class ResourceDetail(
 
         return Resource.objects.filter(status="p")
 
-        return resource
-
     def post(self, request: HttpRequest, **kwargs):
         """
         Handle POST requests for comment submission on a resource detail page.
@@ -210,7 +205,10 @@ class ResourceDetail(
 
             messages.add_message(request, messages.SUCCESS, "Comment submitted!")
             return HttpResponseRedirect(
-                reverse("resources:resource_detail", kwargs={"slug": self.object.slug})
+                reverse(
+                    "resources:resource_detail",
+                    kwargs={"slug": self.object.slug},
+                )
             )
         context = self.get_context_data(comment_form=comment_form)
         return self.render_to_response(context)
@@ -222,7 +220,8 @@ class ResourceDetail(
         Extends the default DetailView context with:
 
         - ``comments``: approved comments for the current resource
-        - ``comment_form``: a blank form on GET, or a bound form on invalid POST
+        - ``comment_form``: a blank form on GET,
+        or a bound form on invalid POST
 
         Returns:
             dict: Context dictionary passed to the template.
@@ -559,11 +558,17 @@ class ResourceUpdate(
             ("Resources", reverse("resources:resource_list")),
             (
                 str(resource),
-                reverse("resources:resource_detail", kwargs={"slug": resource.slug}),
+                reverse(
+                    "resources:resource_detail",
+                    kwargs={"slug": resource.slug},
+                ),
             ),
             (
                 f"resources/{resource.slug}/update",
-                reverse("resources:resource_update", kwargs={"slug": resource.slug}),
+                reverse(
+                    "resources:resource_update",
+                    kwargs={"slug": resource.slug},
+                ),
             ),
         ]
 

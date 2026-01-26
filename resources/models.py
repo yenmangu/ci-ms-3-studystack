@@ -4,7 +4,6 @@ from django.urls import reverse
 from django.utils.text import slugify
 from cloudinary.models import CloudinaryField
 
-
 # Create your models here.
 STATUS = ((0, "Draft"), (1, "Published"))
 STATUS_CHOICES = {

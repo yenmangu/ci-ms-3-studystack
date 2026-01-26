@@ -7,13 +7,13 @@ from django.db import migrations
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('resources', '0007_commentform'),
+        ("resources", "0007_commentform"),
         migrations.swappable_dependency(settings.AUTH_USER_MODEL),
     ]
 
     operations = [
         migrations.RenameModel(
-            old_name='CommentForm',
-            new_name='Comment',
+            old_name="CommentForm",
+            new_name="Comment",
         ),
     ]

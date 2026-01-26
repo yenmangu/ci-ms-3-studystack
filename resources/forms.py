@@ -1,6 +1,5 @@
 from .models import Comment, Resource, Subject
 from django import forms
-from django.utils.text import slugify
 from django.db.models import Q
 from tinymce.widgets import TinyMCE
 
