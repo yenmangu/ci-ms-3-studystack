@@ -399,6 +399,15 @@ class CreateResource(
         return super().form_valid(form)
 
     def get_context_data(self, **kwargs):
+        """
+        Extend the template context with a heading for the update view.
+        Args:
+            **kwargs: Additional keyword arguments passed to the parent
+                implementation.
+        Returns:
+            dict[str, Any]: The template context including a ``heading`` key
+            set to ``"Edit"``.
+        """
         context = super().get_context_data(**kwargs)
         context["heading"] = "Add"
 
@@ -560,6 +569,15 @@ class ResourceUpdate(
         return super().form_valid(form)
 
     def get_context_data(self, **kwargs):
+        """
+        Extend the template context with a heading for the update view.
+        Args:
+            **kwargs: Additional keyword arguments passed to the parent
+                implementation.
+        Returns:
+            dict[str, Any]: The template context including a ``heading`` key
+            set to ``"Edit"``.
+        """
         context = super().get_context_data(**kwargs)
         context["heading"] = "Edit"
         return context
