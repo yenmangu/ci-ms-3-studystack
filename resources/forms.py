@@ -82,6 +82,51 @@ class ResourceForm(forms.ModelForm):
         finally:
             self._pending_subject_names = None
 
+    def clean(self):
+        """
+        Enforce the rule that a Resource must be associated with at least one Subject.
+
+        A valid submission must provide a subject via *either*:
+        - selecting one or more existing subjects from the multi-select field, or
+        - entering one or more new subjects in the free-text `new_subjects` field.
+
+        This validation is performed at the form level to ensure clear user feedback
+        and to prevent invalid submissions from reaching the save layer.
+
+        Notes on implementation:
+        - `subjects` is a ModelMultipleChoiceField; when present, its cleaned value
+        is typically a QuerySet-like object.
+        - `.exists()` is used (when available) to efficiently check for the presence
+        of selected subjects without evaluating or iterating the full QuerySet.
+        - `new_subjects` is parsed using the form’s canonical `_parse_subject_names`
+        helper to ensure consistency with save-time behaviour and to avoid treating
+        whitespace or empty comma-separated input as valid data.
+        """
+        cleaned_data = super().clean()
+        selected_subjects = cleaned_data.get("subjects")
+        raw_new_subjects = (cleaned_data.get("new_subjects") or "").strip()
+
+        has_selected_subjects = False
+        if selected_subjects is not None:
+            try:
+                has_selected_subjects = selected_subjects.exists()
+            except AttributeError:
+                has_selected_subjects = bool(selected_subjects)
+
+        has_new_subjects = bool(self._parse_subject_names(raw_new_subjects))
+
+        if not has_selected_subjects and not has_new_subjects:
+            self.add_error(
+                "subjects",
+                "Please select at least one subject, or add a new subject below.",
+            )
+            self.add_error(
+                "new_subjects",
+                "Please add a new subject, or select at least one subject above.",
+            )
+
+        return cleaned_data
+
     # ---------------- Start custom ---------------- #
 
     def _dedupe_names(self, names: list[str]) -> list[str]:
@@ -197,17 +242,22 @@ class ResourceForm(forms.ModelForm):
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        self.fields["subjects"].widget.attrs.update(
-            {
-                "size": 6,
-                "class": "form-select",
-            }
-        )
+        if "description" in self.fields:
+            self.fields["description"].required = True
+
+        if "subjects" in self.fields:
+            self.fields["subjects"].required = False
+            self.fields["subjects"].widget.attrs.update(
+                {
+                    "size": 6,
+                    "class": "form-select",
+                }
+            )
 
     class Meta:
         model = Resource
+
         fields = (
-            "author",
             "title",
             "description",
             "featured_image",

@@ -393,13 +393,28 @@ class CreateResource(
 
     add_home = False
 
+    def get_form(self, form_class=None):
+        """
+        Remove author field if user is not superuser
+        """
+
+        form = super().get_form(form_class)
+
+        if not self.request.user.is_superuser:
+            form.fields.pop("author", None)
+        return form
+
     def form_valid(self, form):
         """
         Assign server-owned fields before saving.
         The author is derived from the current request and must not be
         user-editable via the form.
         """
-        form.instance.author = self.request.user
+
+        if self.request.user.is_superuser:
+            form.instance.author = form.cleaned_data.get("author") or self.request.user
+        else:
+            form.instance.author = self.request.user
         return super().form_valid(form)
 
     def get_context_data(self, **kwargs):
