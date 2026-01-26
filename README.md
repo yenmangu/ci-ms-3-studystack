@@ -246,6 +246,18 @@ The table below outlines the features implemented in **StudyStack**, mapped to t
 | Responsive Design (Mobile–Desktop)      | 15            | **Must Have**   | ✅          |
 | Security & Permissions Enforcement      | 16            | **Must Have**   | ✅          |
 
+---
+
+#### Rich Text Editing (TinyMCE)
+
+TinyMCE is used to provide a WYSIWYG editor for rich-text content fields, allowing users to format descriptions and study resources in a clear and accessible way without requiring knowledge of HTML.
+
+During manual testing, minor console errors originating from TinyMCE’s third-party scripts were observed. These errors do not affect content creation, editing, or form submission and have no impact on user-facing functionality.
+
+Further details and evidence are documented in the [Testing - TinyMCE console errors (third-party)](TESTING.md#tinymce-console-errors-third-party) section.
+
+---
+
 #### Filtering Behaviour
 
 StudyStack supports filtering resources by multiple subjects.
@@ -257,6 +269,8 @@ and avoids overly broad result sets.
 
 Filtering is implemented using the `django-filter` package, allowing subject selection
 to scale cleanly while maintaining predictable behaviour and pagination support.
+
+---
 
 #### User Feedback
 
@@ -284,6 +298,8 @@ ARIA roles, ensuring that screen reader users receive the same feedback as sight
 
 This approach improves usability, prevents ambiguity, and supports an inclusive experience
 across a range of interaction methods.
+
+---
 
 #### Key References
 
@@ -521,30 +537,6 @@ StudyStack has been tested across all major modern browsers to ensure consistent
 
 Full details of browser testing, including tested versions and results, can be found in the
 [**Browser Compatibility section of TESTING.md**](TESTING.md#browser-compatibility).
-
-## Browser Compatibility
-
-StudyStack was tested across multiple modern browsers to ensure consistent functionality, layout, and accessibility.
-
-Testing focused on core user journeys including browsing resources, authentication, form submission, commenting, and filtering behaviour.
-
-| Browser | Version Tested            | Result | Notes                                              |
-| ------- | ------------------------- | ------ | -------------------------------------------------- |
-| Chrome  | Latest (Desktop & Mobile) | Pass   | Primary development and testing browser            |
-| Firefox | Latest                    | Pass   | No visual or functional issues observed            |
-| Safari  | Latest (macOS)            | Pass   | Tested on macOS; layout and forms behave correctly |
-| Edge    | Latest                    | Pass   | No compatibility issues detected                   |
-
-### Notes
-
-- All browsers tested fully support:
-  - semantic HTML5 elements
-  - modern CSS (Flexbox, Grid, CSS flters, custom properties)
-  - JavaScript ES modules used in the project
-- No polyfills or browser-specific fallbacks were required.
-- Internet Explorer is not supported, as it is deprecated and not required by the assessment brief.
-
-Browser testing was carried out using a combination of real devices and browser developer tools.
 
 ## Accessibility
 
