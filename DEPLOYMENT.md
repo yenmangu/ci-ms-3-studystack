@@ -75,10 +75,10 @@ To run StudyStack locally, follow the steps below.
    https://github.com/yenmangu/ci-ms-3-studystack
 
 2. Clone the repository:
-   git clone https://github.com/yenmangu/ci-ms-3-studystack.git
+   `git clone https://github.com/yenmangu/ci-ms-3-studystack.git`
 
 3. Change into the project directory:
-   cd ci-ms-3-studystack
+   `cd ci-ms-3-studystack`
 
 ---
 
@@ -86,30 +86,31 @@ To run StudyStack locally, follow the steps below.
 
 1. Create and activate a virtual environment:
 
-   python -m venv .venv
-   source .venv/bin/activate
+`python -m venv .venv`
 
-2. Install dependencies:
+`source .venv/bin/activate`
 
-   pip install -r requirements.txt
+1. Install dependencies:
 
-3. Create an `env.py` file in the project root and define the required environment variables, including:
+   `pip install -r requirements.txt`
+
+2. Create an `env.py` file in the project root and define the required environment variables, including:
    - SECRET_KEY
    - DATABASE_URL (optional for local SQLite)
    - CLOUDINARY_URL
    - TINY_MCE_KEY
 
-4. Apply database migrations:
+3. Apply database migrations:
 
-   python manage.py migrate
+   `python manage.py migrate`
 
-5. (Optional) Create a superuser for admin access:
+4. (Optional) Create a superuser for admin access:
 
-   python manage.py createsuperuser
+   `python manage.py createsuperuser`
 
-6. Run the development server:
+5. Run the development server:
 
-   python manage.py runserver
+   `python manage.py runserver`
 
 ---
 
