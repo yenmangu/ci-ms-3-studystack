@@ -45,11 +45,7 @@ const hasComments = document.getElementById('hasComments') || null;
  */
 
 if (hasComments) {
-	console.log('Comments available');
-
 	for (let btn of editBtns) {
-		console.log(`Button: ${btn}`);
-
 		btn.addEventListener('click', e => {
 			console.log('btn: ', btn, 'clicked');
 
@@ -65,13 +61,11 @@ if (hasComments) {
 			const event = /** @type {MouseEvent} */ (e);
 			const target = /** @type {HTMLElement} */ (event.currentTarget);
 			const commentId = target.getAttribute('data-comment-id');
-			console.log('currentTarget: ', target);
 
 			const editUrl = target.dataset.editUrl;
 			if (!editUrl) {
 				throw new Error('No edit url found in dataset');
 			}
-			console.log('Edit url: ', editUrl);
 
 			const commentContent =
 				document.getElementById(`comment${commentId}`)?.innerText ?? '';
