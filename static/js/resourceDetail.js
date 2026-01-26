@@ -89,16 +89,16 @@ if (hasComments) {
 			deleteModal.show();
 		});
 	}
-
-	deleteButton.addEventListener('click', e => {
-		const event = /** @type {MouseEvent} */ (e);
-		const target = /** @type {HTMLElement} */ (event.currentTarget);
-		const deleteModal = new bootstrap.Modal(deleteModalRef);
-
-		if (!target.dataset.deleteUrl) {
-			throw new Error('No delete url defined');
-		}
-		deleteForm.action = target.dataset.deleteUrl;
-		deleteModal.show();
-	});
 }
+
+deleteButton.addEventListener('click', e => {
+	const event = /** @type {MouseEvent} */ (e);
+	const target = /** @type {HTMLElement} */ (event.currentTarget);
+	const deleteModal = new bootstrap.Modal(deleteModalRef);
+
+	if (!target.dataset.deleteUrl) {
+		throw new Error('No delete url defined');
+	}
+	deleteForm.action = target.dataset.deleteUrl;
+	deleteModal.show();
+});
