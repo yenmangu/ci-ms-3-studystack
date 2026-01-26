@@ -106,7 +106,6 @@
                     </time>
                     {% if comment.is_updated %}<span class="ms-1 text-muted font-italic">(edited)</span>{% endif %}
                   {% endwith %}
-                  <!-- TODO: Update layout - xxx wrote.. body on .. date -->
                 </div>
                 <div class="col-md-10">
                   <div class="comment-body" id="comment{{ comment.id }}">{{ comment.body | linebreaks }}</div>
