@@ -1,12 +1,15 @@
 # StudyStack - Community Resource Library
 
+## Live Application
+
+- **Live site:** https://study-stack-63fdd524a632.herokuapp.com/
+- **Documentation:** https://yenmangu.github.io/ci-ms-3-studystack/
+
 ## Overview
 
 StudyStack is a community-powered study resource library where users can create, browse, and discover learning materials shared by other students. Resources are organised by subject and type, making it easy to find relevant content quickly. Authenticated users can manage their own resources and participate in discussion via comments.
 
 The project was built with Django using server-rendered templates and follows an accessibility-first, mobile-first approach aligned to WCAG 2.1 AA and the Code Institute Level 5 specification.
-
-## Glossary
 
 ## Glossary
 
@@ -107,73 +110,101 @@ These focused on:
 
 Minor layout adjustments were made during development to improve accessibility and reduce layout shift.
 
+| Page            | Wireframe                                                               |
+| --------------- | ----------------------------------------------------------------------- |
+| Home            | ![Home](./documentation/ux/wireframes/Index.png)                        |
+| Resource Detail | ![Resource Detail](./documentation/ux/wireframes/Resource%20Detail.png) |
+| Create Resource | ![Create Resource](./documentation/ux/wireframes/Create%20Resource.png) |
+
+> [!NOTE]
+> See [Wireframes](./documentation/ux/wireframes/) for wireframes
+
 ---
 
 #### 5. Surface Plane
 
+The Surface Plane defines the visual presentation and sensory layer of StudyStack.
+All visual design decisions were made to support clarity, accessibility, performance, and the project’s academic purpose.
+
+---
+
 ##### Colour Scheme
 
-The StudyStack colour palette was derived from the site branding and refined using accessibility contrast testing.
+The StudyStack colour palette was derived from the site’s branding and refined through contrast testing to meet **WCAG 2.1 AA** requirements.
 
 | Purpose | Colour  | Usage                  |
 | ------- | ------- | ---------------------- |
-| Primary | #2C3E50 | Headers, navigation    |
+| Primary | #2C3E50 | Headings, navigation   |
 | Accent  | #4E73DF | Links, primary actions |
-| Success | #198754 | Success messages       |
-| Warning | #FFC107 | Cautionary feedback    |
+| Success | #198754 | Success feedback       |
+| Warning | #FFC107 | Cautionary messaging   |
 | Error   | #DC3545 | Error states           |
 
-Colours were verified against WCAG 2.1 AA contrast requirements.
+Colour is never used as the sole means of conveying information. Status and feedback messages combine colour, text, and semantic structure to ensure accessibility for all users.
+
+---
+
+##### Dark Mode Support
+
+StudyStack respects users’ system preferences for dark mode using the `prefers-color-scheme` media query.
+
+- When a user’s operating system is set to dark mode, the interface adapts automatically.
+- Contrast ratios are preserved to maintain readability in low-light environments.
+- This approach reduces eye strain and improves accessibility without requiring additional user configuration.
+
+---
 
 ##### Typography
 
 - **Primary font:** System UI stack (browser default)
-- Chosen for performance, legibility, and accessibility
-- Headings follow a strict semantic hierarchy
+- Chosen for performance, familiarity, and native accessibility across platforms.
 
-## Wireframes
+A strict semantic heading hierarchy (`h1` → `h2` → `h3`) is enforced throughout the application to support screen readers and maintain logical document structure.
 
-> **Wireframes were created in [Figma/Mockflow/etc.] and closely followed throughout the build. Design changes made during development are documented in the README.**
+---
 
-#### 5. Surface Plane
+##### Imagery
 
-> This section explains StudyStack’s visual design system, including colour palette, typography, imagery, interactivity, and support for modern features like dark mode. Each element is selected and tested for clarity, accessibility, and brand consistency.
+- Resources may include optional preview images uploaded by users.
+- Safe placeholder handling is used when no image is provided to prevent layout shift and broken media requests.
+- Informative images include meaningful `alt` text.
+- Decorative icons are either hidden from assistive technologies using `aria-hidden="true"` or provided with descriptive `aria-label` attributes when interactive.
 
-##### Visual Design Elements
+This ensures visual content enhances usability without creating accessibility barriers.
 
-- **Dark Mode Support:**
-  - StudyStack respects users’ system dark mode preferences.
-  - When the browser is set to dark mode (`prefers-color-scheme: dark`), a dark colour palette is automatically applied for reduced eye strain and better accessibility in low-light environments.
-  <!-- - Colours and backgrounds are blended using CSS custom properties and `color-mix` for smooth transitions between themes. -->
+---
 
-### Colour Scheme
+##### Interactivity & Feedback
 
-I used [the favicon]() along with a colour picker tool to choose the StudyStack colour palette.
+The interface provides immediate, unambiguous feedback for all user actions.
 
-> Note about colour inspiration
+Key interaction principles include:
 
-| Tone | Hex | HSL | Use |
-| ---- | --- | --- | --- |
+- Clear visual feedback for create, update, and delete actions using Django messages.
+- Distinct empty states to differentiate between:
+  - “No resources exist yet”
+  - “No results match the selected filters”
+- Edit and delete controls are displayed only to authorised users, reducing cognitive load.
+- Destructive actions require explicit confirmation to prevent accidental data loss.
 
-I used [Coolors]() to generate the following pallete from my chosen colours.
-![screenshot]()
+All feedback messages are announced to assistive technologies using ARIA live regions, ensuring parity between visual and non-visual user experiences.
 
-### Typography
+---
 
-### Imagery
+##### Visual Consistency
 
-- User-uploaded preview images are supported for resources (with safe placeholder handling for missing images).
-- All resource thumbnails include descriptive `alt` text to support screen reader users.
-- Decorative icons are either labelled appropriately (when interactive) or hidden from assistive technologies.
+- Spacing, alignment, and component styling are consistent across pages.
+- Bootstrap utilities are used selectively to support responsiveness without overriding semantic structure.
+- Layout decisions prioritise visual stability and minimise layout shift during loading and interaction.
 
-  > see [Credits](#stock-images--icons) for specific attribution.
+---
 
-### Interactivity & Feedback
+##### Summary
 
-- Resource browsing supports filtering and clear empty states (distinct messaging for “no results” vs “no resources yet”).
-- Users receive immediate feedback after key actions (create, update, delete) via Django messages.
-- Comment edit/delete controls use icon buttons with descriptive `aria-label` values.
-- Destructive actions are confirmed via a modal to prevent accidental deletion.
+The Surface Plane of StudyStack reinforces its academic purpose through restrained, accessible design choices.
+Visual styling enhances usability rather than distracting from content, ensuring the interface remains intuitive, inclusive, and performant across devices and interaction methods.
+
+---
 
 ## Project Planning & Agile Methodology
 
@@ -206,6 +237,8 @@ Each user story includes defined acceptance criteria and is grouped under an Epi
 | 16  | Security & Permissions      | Must Have       | [User Story](./documentation/agile/user-stories/user-story-16-security-and-permissions.md) |
 
 > MoSCoW prioritisation was used to manage scope and ensure all core assessment requirements were delivered before enhancement features.
+
+---
 
 ## Features
 
@@ -262,7 +295,6 @@ Further details and evidence are documented in the [Testing - TinyMCE console er
 
 StudyStack supports filtering resources by multiple subjects.
 When more than one subject is selected, filtering uses **AND semantics**.
-
 This means that only resources tagged with **all selected subjects** are returned.
 This design choice encourages more precise discovery of interdisciplinary study materials
 and avoids overly broad result sets.
@@ -368,7 +400,34 @@ This ensures all commits are consistent, scoped, and easy to scan.
 
 ### Python
 
-> Note: Note about Python best practices etc
+### Python Best Practices
+
+StudyStack follows established Python and Django best practices to ensure the codebase remains readable, maintainable, and easy to extend.
+
+Key principles include:
+
+- **PEP 8 compliance:**
+  Python code follows PEP 8 conventions for naming, spacing, and structure to maintain consistency and readability across the project.
+
+- **Descriptive naming:**
+  Variables, functions, classes, and files use clear, descriptive names that reflect their purpose. This reduces the need for excessive comments and supports self-documenting code.
+
+- **Separation of concerns:**
+  Business logic, data access, and presentation responsibilities are kept distinct. Django views, forms, models, and templates each handle a single, well-defined role.
+
+- **Reusable abstractions:**
+  Shared logic is extracted into helper functions, mixins, or model methods where appropriate, avoiding duplication and improving testability.
+
+- **Defensive programming:**
+  User input is validated using Django Forms and model constraints. Errors are handled gracefully with clear user feedback rather than unhandled exceptions.
+
+- **Environment-aware configuration:**
+  Sensitive values (such as secret keys and database credentials) are never hard-coded. All environment-specific configuration is handled via environment variables.
+
+- **Minimal complexity:**
+  Code is kept as simple as possible while remaining explicit. Over-engineering is avoided in favour of clarity and correctness.
+
+This approach ensures the Python codebase is robust, secure, and aligned with professional backend development standards.
 
 ### JavaScript
 
@@ -415,17 +474,44 @@ All custom CSS adopts the BEM (Block, Element, Modifier) naming convention for m
 - **Element** - A child part of that component (`recipe-card__title`)
 - **Modifier** - A variation of the block or element (`recipe-card--featured`)
 
-```
-
-.block {}
-.block\_\_element {}
-.block--modifier {}
-
+```css
+.block {
+}
+.block\_\_element {
+}
+.block--modifier {
+}
 ```
 
 #### Example
 
-> Provide example of actual BEM used in project
+```html
+<div class="row g-3 form-controls mb-2 py-2 align-items-start">
+	<div class="col-lg-4 form-controls__title">
+		<label for="{{ filter.form.title.id_for_label }}" class="form-label"
+			>{{ filter.form.title.label }}:</label
+		>
+		{{ filter.form.title }}
+	</div>
+	<div class="col-lg-4 form-controls__subjects">
+		<label for="{{ filter.form.subjects.id_for_label }}" class="form-label"
+			>{{ filter.form.subjects.label }}:</label
+		>
+		{{ filter.form.subjects }}
+		<div id="subjects-help" class="form-text">
+			Hold down Ctrl (Windows) or Command (Mac) to select multiple subjects.
+		</div>
+	</div>
+	<div class="col-lg-4 form-controls__created-on">
+		<label for="{{ filter.form.created_on.id_for_label }}" class="form-label"
+			>{{ filter.form.created_on.label }}:</label
+		>
+		{{ filter.form.created_on }}
+	</div>
+</div>
+```
+
+[\_filters_form.html partial](resources/templates/resources/partials/_filters_form.html)
 
 ## Tools and Technologies
 
@@ -469,15 +555,13 @@ User stories were grouped into Epics using custom fields within GitHub Projects 
 
 ### GitHub Pages
 
-The site was deployed to GitHub Pages. The steps to deploy are as follows:
+### GitHub Pages (Documentation Hosting)
 
-- In the [GitHub repository](https://github.com/yenmangu/ci-ms-3-studystack), navigate to the "Settings" tab.
-- In Settings, click on the "Pages" link from the menu on the left.
-- From the "Build and deployment" section, click the drop-down called "Branch", and select the **main** branch, then click "Save".
-- The page will be automatically refreshed with a detailed message display to indicate the successful deployment.
-- Allow up to 5 minutes for the site to fully deploy.
+Project documentation and assessment assets are hosted on GitHub Pages.
+The live Django application is deployed separately via Heroku.
 
-The live link can be found on [GitHub Pages](https://yenmangu.github.io/ci-ms-3-studystack/).
+> [!NOTE]
+> Visit [**DEPLOYMENT.md**](./DEPLOYMENT.md) for a full deployment breakdown.
 
 ### GitHub Issues
 
@@ -494,7 +578,7 @@ For a full explanation and breakdown, see [MoSCoW Prioritisation](#moscow-priori
 
 ## Development Bugs
 
-| Bug / Issue                                                | Diagnosis                                                                                                                                                                  | Fix                                                                                                                                                        |
+| Bug / Issue                                                | Diagnosis                                                                                                                                                                  | Fix                                                                                                                                                        | Commit Id                                                                                                            |
 | ---------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------- |
 | Cloudinary placeholder images returned 404 errors          | `CloudinaryField(default="placeholder")` is always truthy; accessing `.url` triggered requests for non-existent assets                                                     | Checked `featured_image.public_id` before accessing `.url` and guarded image rendering in templates                                                        |
 | Edited comments displayed incorrect timestamp              | Template always rendered `created_on`, ignoring `updated_on` when comments were edited                                                                                     | Resolved datetime via template logic and rendered using a semantic `<time>` element                                                                        |
