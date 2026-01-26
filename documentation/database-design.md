@@ -136,8 +136,6 @@ The diagram uses [Crow's foot notation](https://en.wikipedia.org/wiki/Entity%E2%
 - ORM queries transparently route through the join table
 - Reverse relationship names are explicitly defined for readability
 
-<!-- NEW -->
-
 # Database Design
 
 ## Overview
