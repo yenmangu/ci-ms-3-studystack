@@ -61,7 +61,7 @@
 
 .messages-stack .container {
 	max-height: 40vh;
-	overflow: auto;
+	overflow: hidden;
 }
 .resource-list {
 	min-height: 500px;
