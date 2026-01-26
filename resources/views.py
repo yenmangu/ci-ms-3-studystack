@@ -164,10 +164,14 @@ class ResourceDetail(
         Returns:
             QuerySet: Published :model:`resources.Resource` objects only.
         """
-        if self.request.user.is_superuser:
-            resource = Resource.objects.order_by("-created_on")
-        else:
-            resource = Resource.objects.filter(status="p").order_by("-created_on")
+        user = self.request.user
+        if user.is_superuser:
+            return Resource.objects.all()
+
+        if user.is_authenticated:
+            return Resource.objects.filter(Q(status="p") | Q(author=user))
+
+        return Resource.objects.filter(status="p")
 
         return resource
 
