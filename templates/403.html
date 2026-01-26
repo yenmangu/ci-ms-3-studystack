@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% block content %}
+  <div class="row">
+    <div class="col-12 col-lg-8 mx-auto">
+      <div class="card border-0 shadow-sm">
+        <div class="card-body">
+          <h1 class="h3 mb-2">403 — Forbidden</h1>
+          <p class="text-muted mb-4">You don’t have permission to access this page.</p>
+          {% if user.is_authenticated %}
+            <p class="mb-4">
+              If you believe this is a mistake, you may not be the author of this resource, or your account does not have access.
+            </p>
+          {% else %}
+            <p class="mb-4">You may need to log in to continue.</p>
+          {% endif %}
+          <div class="d-flex flex-wrap gap-2">
+            <a class="btn btn-primary" href="{% url 'resources:resource_list' %}">Back to resources</a>
+            {% if not user.is_authenticated %}
+              <a class="btn btn-outline-secondary" href="{% url 'account_login' %}">Log in</a>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock content %}
