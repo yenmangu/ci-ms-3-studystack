@@ -8,12 +8,12 @@ This checklist is used to track implementation progress against the planned Epic
 
 - [x] Initial commit: project scaffold
 - [x] Create Django project and main app
-- [ ] Set up project structure (templates, static, media)
+- [x] Set up project structure (templates, static, media)
 - [x] Set up minimal view
-- [ ] Configure base template (`base.html`)
-- [ ] Add navigation bar with conditional auth links
-- [ ] Enable Django messages framework
-- [ ] Configure environment variables (`SECRET_KEY`, `DEBUG`, DB config)
+- [x] Configure base template (`base.html`)
+- [x] Add navigation bar with conditional auth links
+- [x] Enable Django messages framework
+- [x] Configure environment variables (`SECRET_KEY`, `DEBUG`, DB config)
 
 ---
 
@@ -22,10 +22,10 @@ This checklist is used to track implementation progress against the planned Epic
 **Epic 1 – Must Have**
 
 - [x] Create home page view
-- [ ] Add site purpose and description (StudyStack)
-- [ ] Add primary calls-to-action (Browse / Register / Login)
-- [ ] Link navigation to key pages
-- [ ] Update Feature Table:
+- [x] Add site purpose and description (StudyStack)
+- [x] Add primary calls-to-action (Browse / Register / Login)
+- [x] Link navigation to key pages
+- [x] Update Feature Table:
   - View Home Page & Site Purpose → ✅
 
 ---
@@ -34,13 +34,13 @@ This checklist is used to track implementation progress against the planned Epic
 
 **Epic 2 – Must Have**
 
-- [ ] Implement user registration (sign-up)
-- [ ] Implement login functionality
-- [ ] Implement logout functionality
-- [ ] Show login/logout state in navigation
-- [ ] Add feedback messages for auth actions
-- [ ] Protect restricted routes
-- [ ] Update Feature Table:
+- [x] Implement user registration (sign-up)
+- [x] Implement login functionality
+- [x] Implement logout functionality
+- [x] Show login/logout state in navigation
+- [x] Add feedback messages for auth actions
+- [x] Protect restricted routes
+- [x] Update Feature Table:
   - User Registration → ✅
   - User Login & Logout → ✅
 
@@ -50,13 +50,13 @@ This checklist is used to track implementation progress against the planned Epic
 
 **Foundation for CRUD**
 
-- [ ] Create `Resource` model
-- [ ] Create `Topic` model
-- [ ] Set up Many-to-Many relationship (Resource ↔ Topic)
-- [ ] Create `Comment` model
-- [ ] Run migrations
-- [ ] Register models in Django admin
-- [ ] Add sample data via admin
+- [x] Create `Resource` model
+- [x] Create `Topic` model
+- [x] Set up Many-to-Many relationship (Resource ↔ Topic)
+- [x] Create `Comment` model
+- [x] Run migrations
+- [x] Register models in Django admin
+- [x] Add sample data via admin
 
 ---
 
@@ -64,14 +64,14 @@ This checklist is used to track implementation progress against the planned Epic
 
 **Epic 3 – Must / Should / Could**
 
-- [ ] Create resource list view
-- [ ] Display resource cards with summary info
-- [ ] Create resource detail view
-- [ ] Display topics/tags on detail page
-- [ ] Implement search functionality (keyword-based)
-- [ ] Implement filter by topic and type
-- [ ] Handle empty and no-result states
-- [ ] Update Feature Table:
+- [x] Create resource list view
+- [x] Display resource cards with summary info
+- [x] Create resource detail view
+- [x] Display topics/tags on detail page
+- [x] Implement search functionality (keyword-based)
+- [x] Implement filter by topic and type
+- [x] Handle empty and no-result states
+- [x] Update Feature Table:
   - Browse Study Resources → ✅
   - View Resource Detail Page → ✅
   - Search Study Resources → ✅
@@ -83,12 +83,12 @@ This checklist is used to track implementation progress against the planned Epic
 
 **Epic 4 – Must Have**
 
-- [ ] Create “Add Resource” form
-- [ ] Restrict access to logged-in users
-- [ ] Validate form inputs
-- [ ] Save resource with owner reference
-- [ ] Show success feedback on creation
-- [ ] Update Feature Table:
+- [x] Create “Add Resource” form
+- [x] Restrict access to logged-in users
+- [x] Validate form inputs
+- [x] Save resource with owner reference
+- [x] Show success feedback on creation
+- [x] Update Feature Table:
   - Create Study Resource → ✅
 
 ---
@@ -97,12 +97,12 @@ This checklist is used to track implementation progress against the planned Epic
 
 **Epic 5 – Must Have**
 
-- [ ] Implement edit resource view
-- [ ] Restrict editing to resource owner
-- [ ] Implement delete confirmation view
-- [ ] Restrict deletion to resource owner
-- [ ] Show success feedback for updates/deletions
-- [ ] Update Feature Table:
+- [x] Implement edit resource view
+- [x] Restrict editing to resource owner
+- [x] Implement delete confirmation view
+- [x] Restrict deletion to resource owner
+- [x] Show success feedback for updates/deletions
+- [x] Update Feature Table:
   - Edit Own Study Resource → ✅
   - Delete Own Study Resource → ✅
 
@@ -112,12 +112,12 @@ This checklist is used to track implementation progress against the planned Epic
 
 **Epic 6 – Should Have**
 
-- [ ] Display comments on resource detail page
-- [ ] Create add comment form (logged-in users only)
-- [ ] Save comment with owner reference
-- [ ] Implement delete comment functionality
-- [ ] Restrict deletion to comment owner
-- [ ] Update Feature Table:
+- [x] Display comments on resource detail page
+- [x] Create add comment form (logged-in users only)
+- [x] Save comment with owner reference
+- [x] Implement delete comment functionality
+- [x] Restrict deletion to comment owner
+- [x] Update Feature Table:
   - Add Comment to Resource → ✅
   - Delete Own Comment → ✅
 
@@ -127,12 +127,12 @@ This checklist is used to track implementation progress against the planned Epic
 
 **Epic 8 – Must Have**
 
-- [ ] Add form-level validation messages
-- [ ] Preserve user input on form errors
-- [ ] Handle invalid URLs and missing resources
-- [ ] Add custom 404 page
-- [ ] Prevent unauthorised actions gracefully
-- [ ] Update Feature Table:
+- [x] Add form-level validation messages
+- [x] Preserve user input on form errors
+- [x] Handle invalid URLs and missing resources
+- [x] Add custom 404 page
+- [x] Prevent unauthorised actions gracefully
+- [x] Update Feature Table:
   - Form Validation & Error Feedback → ✅
 
 ---
@@ -141,11 +141,11 @@ This checklist is used to track implementation progress against the planned Epic
 
 **Epic 9 – Must Have**
 
-- [ ] Apply responsive layout (mobile-first)
-- [ ] Test layouts on mobile, tablet, desktop
-- [ ] Ensure readable typography and spacing
-- [ ] Check colour contrast and focus states
-- [ ] Update Feature Table:
+- [x] Apply responsive layout (mobile-first)
+- [x] Test layouts on mobile, tablet, desktop
+- [x] Ensure readable typography and spacing
+- [x] Check colour contrast and focus states
+- [x] Update Feature Table:
   - Responsive Design → ✅
 
 ---
@@ -154,24 +154,24 @@ This checklist is used to track implementation progress against the planned Epic
 
 **Epic 10 – Must Have**
 
-- [ ] Ensure all secrets stored in environment variables
-- [ ] Disable `DEBUG` in production
-- [ ] Restrict create/edit/delete to authenticated users
-- [ ] Enforce owner-only permissions
-- [ ] Test permission edge cases
-- [ ] Update Feature Table:
+- [x] Ensure all secrets stored in environment variables
+- [x] Disable `DEBUG` in production
+- [x] Restrict create/edit/delete to authenticated users
+- [x] Enforce owner-only permissions
+- [x] Test permission edge cases
+- [x] Update Feature Table:
   - Security & Permissions Enforcement → ✅
 
 ---
 
 ## Phase 12: Testing, Documentation & Deployment
 
-- [ ] Manual testing of all user stories
-- [ ] Document testing results
-- [ ] Fix or document known bugs
-- [ ] Finalise README
-- [ ] Deploy to production (Heroku)
-- [ ] Verify deployed version matches local
-- [ ] Final review of Feature Table (all Must-Have = ✅)
+- [x] Manual testing of all user stories
+- [x] Document testing results
+- [x] Fix or document known bugs
+- [x] Finalise README
+- [x] Deploy to production (Heroku)
+- [x] Verify deployed version matches local
+- [x] Final review of Feature Table (all Must-Have = ✅)
 
 ---
