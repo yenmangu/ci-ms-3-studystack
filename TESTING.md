@@ -24,14 +24,14 @@ Testing has been carried out throughout development using a combination of **aut
 >
 > [Validation Report](documentation/validation/w3c-validation-report-20_01_26.txt)
 
-| Page / Template      | URL (Deployed) | Result | Evidence   |
-| -------------------- | -------------- | ------ | ---------- |
-| Home / Resource List | Deployed site  | Pass   | See report |
-| Resource Detail      | Deployed site  | Pass   | See report |
-| Resource Create      | Deployed site  | Pass   | See report |
-| Resource Update      | Deployed site  | Pass   | See report |
-| Resource Delete      | Deployed site  | Pass   | See report |
-| Authentication Pages | Deployed site  | Pass   | See report |
+| Page / Template      | URL (Deployed)                                                                                                                                                                     | Result | Evidence   |
+| -------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------ | ---------- |
+| Home / Resource List | [https://study-stack-63fdd524a632.herokuapp.com/](https://study-stack-63fdd524a632.herokuapp.com/)                                                                                 | Pass   | See report |
+| Resource Detail      | [https://study-stack-63fdd524a632.herokuapp.com/resources/python-tutorial-official/](https://study-stack-63fdd524a632.herokuapp.com/resources/python-tutorial-official/)           | Pass   | See report |
+| Resource Create      | [https://study-stack-63fdd524a632.herokuapp.com/create/](https://study-stack-63fdd524a632.herokuapp.com/create/)                                                                   | Pass   | See report |
+| Resource Update      | [https://study-stack-63fdd524a632.herokuapp.com/resources/python-tutorial-official/edit/](https://study-stack-63fdd524a632.herokuapp.com/resources/python-tutorial-official/edit/) | Pass   | See report |
+| Resource Delete      | POST-only (CSRF-protected form action)                                                                                                                                             | Pass   | See report |
+| Authentication Pages | [https://study-stack-63fdd524a632.herokuapp.com/accounts/login/](https://study-stack-63fdd524a632.herokuapp.com/accounts/login/)                                                   | Pass   | See report |
 
 No HTML errors were reported for any validated routes.
 Any informational messages returned by the validator did not affect functionality, accessibility, or document validity.
@@ -214,6 +214,7 @@ Manual testing was carried out to ensure the application behaves safely and pred
 ## Implemented User Story Testing
 
 User stories were manually verified against acceptance criteria.
+All user stories shown in the project board were marked as _Done_ only after successful manual verification against acceptance criteria.
 
 | User Story               | Description                             | Test Performed                                       | Result |
 | ------------------------ | --------------------------------------- | ---------------------------------------------------- | ------ |
@@ -240,13 +241,16 @@ User stories were manually verified against acceptance criteria.
 
 ### Fixed Bugs
 
-All identified bugs were logged and tracked using **GitHub Issues**. Issues were resolved incrementally with clear commit history.
+All identified bugs were logged and tracked using [**GitHub Issues**](https://github.com/yenmangu/ci-ms-3-studystack/issues). Issues were resolved incrementally with clear commit history.
 
 Examples include:
 
 - Incorrect slug handling during updates
 - Subject duplication during resource edits
 - Permission edge cases on delete views
+
+> [!NOTE]
+> See [Bugs](./README.md#development-bugs) for a comprehensive bugs report.
 
 ---
 
