@@ -8,53 +8,128 @@ The project was built with Django using server-rendered templates and follows an
 
 ## Glossary
 
+## Glossary
+
+| Term      | Definition                                                                              |
+| --------- | --------------------------------------------------------------------------------------- |
+| Resource  | A study item submitted by a user, such as an article, video, or external learning link. |
+| Subject   | A topic area used to categorise resources (e.g. HTML, CSS, Python).                     |
+| Draft     | A resource visible only to its author until published.                                  |
+| Published | A resource visible to all users.                                                        |
+| MoSCoW    | A prioritisation method: Must, Should, Could, Won’t Have.                               |
+| CLS       | Cumulative Layout Shift — a Core Web Vitals metric measuring visual stability.          |
+
 ## UX
 
 ### The 5 Planes of UX
 
 #### 1. Strategy Plane
 
-> This section sets out StudyStack’s core purpose, audience, and user goals. All product decisions are based on addressing real-world needs, ensuring the app delivers practical value to its intended users.
-
 **Purpose**
-StudyStack is a ..
+StudyStack exists to give students a structured, searchable place to share learning resources with peers, reducing friction in discovering high-quality study material.
 
-**Business/User Goals**
+Unlike generic bookmarking tools, StudyStack focuses on **curated academic content**, subject classification, and community contribution.
+
+**Business / User Goals**
+
+- Encourage peer-to-peer knowledge sharing
+- Provide a clear, low-friction way to discover study material
+- Ensure content ownership and moderation through permissions
+- Maintain accessibility and usability across devices
 
 **Primary User Needs**
 
+- Browse relevant resources quickly
+- Filter and search by subject
+- Save and manage personal contributions
+- Trust that content is moderated and reliable
+
+---
+
 #### 2. Scope Plane
 
-> Here, StudyStack’s functional scope and content requirements are defined. Features are prioritised using MoSCoW methodology, ensuring the project delivers essential value first while clearly outlining future enhancements.
+**Core Features (Delivered)**
 
-**Features**
+- Resource browsing and discovery
+- Subject-based filtering and search
+- User authentication and permissions
+- Create, edit, and delete own resources
+- Commenting and discussion
+- Draft vs published workflow
 
 **Future Features (Could-Have)**
 
+- Resource bookmarking / favourites
+- User profiles with contribution history
+- Rating or upvoting system
+- Richer media previews
+- Moderation queue for community reporting
+
 **Content Requirements**
+
+- Title, description, subject(s), resource type
+- Optional preview image
+- External resource link
+- Author attribution
+- Comment threads
+
+---
 
 #### 3. Structure Plane
 
-> This section explains StudyStack’s information architecture and user flows. Navigation, hierarchy, and page structure are planned to support intuitive, seamless journeys so users always know where they are and what to do next.
-
 **Information Architecture**
 
-- **Page Hierarchy:**
+- Home → Resource List
+- Resource List → Resource Detail
+- Resource Detail → Comments
+- Authenticated Actions → Create / Edit / Delete
 
-_User Flow_
+**User Flow (Primary)**
 
-1.
-2.
+1. User lands on home page
+2. Browses or filters resources
+3. Views resource detail
+4. (Optional) Logs in to interact
+5. Creates, edits, or comments on resources
 
 ---
 
 #### 4. Skeleton Plane
 
-> The Skeleton Plane documents StudyStack’s wireframes and component layouts, demonstrating how core features and workflows are physically arranged on each screen. Mobile-first responsive design ensures all layouts adapt gracefully to any device.
+Wireframes were created to plan layout and interaction patterns before development.
 
-##### Wireframe Suggestions
+These focused on:
 
-**Wireframes & Layout**
+- Mobile-first card layout
+- Clear hierarchy between content and actions
+- Consistent placement of feedback messages
+- Progressive disclosure of controls (edit/delete only for owners)
+
+Minor layout adjustments were made during development to improve accessibility and reduce layout shift.
+
+---
+
+#### 5. Surface Plane
+
+##### Colour Scheme
+
+The StudyStack colour palette was derived from the site branding and refined using accessibility contrast testing.
+
+| Purpose | Colour  | Usage                  |
+| ------- | ------- | ---------------------- |
+| Primary | #2C3E50 | Headers, navigation    |
+| Accent  | #4E73DF | Links, primary actions |
+| Success | #198754 | Success messages       |
+| Warning | #FFC107 | Cautionary feedback    |
+| Error   | #DC3545 | Error states           |
+
+Colours were verified against WCAG 2.1 AA contrast requirements.
+
+##### Typography
+
+- **Primary font:** System UI stack (browser default)
+- Chosen for performance, legibility, and accessibility
+- Headings follow a strict semantic hierarchy
 
 ## Wireframes
 
@@ -233,25 +308,36 @@ A detailed Entity Relationship Diagram (ERD) and full database explanation can b
 
 ## Architecture
 
-> StudyStack is architected as a modular, component-driven application, using Django for templating and Bootstrap for responsive design. The application’s structure is deliberately organised to maximise maintainability, reusability, and testability—enabling future features and team development.
-
 ### High-Level Overview
 
-## Design Patterns
+StudyStack is a server-rendered Django application using:
 
-> Note about design patterns used
+- Django templates for HTML rendering
+- Django ORM for database access
+- Bootstrap 5 for layout and responsiveness
+- Modular apps to separate concerns (`resources`, `home`, `core`)
 
-### Architecture Overview
+This structure supports maintainability and future extension.
+
+---
 
 ### Error Handling Architecture
 
+- Validation errors handled via Django Forms
+- Permission errors return HTTP 403 responses
+- Missing resources return custom 404 pages
+- User-facing feedback delivered via Django Messages
+- All messages are ARIA-announced for accessibility
+
+---
+
 ### Security & Best Practice
 
-### Test & Development Support
-
-### Example Request Flow
-
-### Source Code
+- CSRF protection enabled for all forms
+- Authentication via Django Allauth
+- Object-level permissions enforced in views
+- POST-only deletion for destructive actions
+- Sensitive data stored via environment variables
 
 ## Development & Code Style
 
@@ -410,32 +496,55 @@ For a full explanation and breakdown, see [MoSCoW Prioritisation](#moscow-priori
 
 ## Deployment
 
-### GitHub Pages
+## Deployment
 
-### Local Development
+> [!IMPORTANT]
+> **StudyStack uses a split deployment strategy** to ensure production security while keeping assessment documentation publicly accessible.
 
-1. Clone the repository.
-2. Create and activate a virtual environment.
-3. Install dependencies from `requirements.txt`.
-4. Create an `env.py` file with required environment variables.
-5. Run migrations and start the server.
+- The **live Django application** is deployed via **Heroku**
+- **Project documentation and evidence** are hosted separately via **GitHub Pages**
 
-Further setup details are provided in the Deployment section and project documentation.
+A full breakdown of deployment environments, configuration, and local setup is provided here:
 
-#### Cloning
+[**View Deployment Documentation**](DEPLOYMENT.md)
 
-<!-- TODO: Add cloning and forking -->
+This includes:
 
-> Add cloning and forking information
-
-#### Forking
-
-### Local VS Deployment
-
-> [!NOTE]
-> The application distinguishes between local development, remote development, and Heroku production using environment variables provided by the hosting platform.
+- Heroku production setup
+- Environment variable configuration
+- Local development instructions
+- Documentation hosting strategy
 
 ## Browser Compatibility
+
+StudyStack has been tested across all major modern browsers to ensure consistent functionality, layout, and accessibility.
+
+Full details of browser testing, including tested versions and results, can be found in the
+[**Browser Compatibility section of TESTING.md**](TESTING.md#browser-compatibility).
+
+## Browser Compatibility
+
+StudyStack was tested across multiple modern browsers to ensure consistent functionality, layout, and accessibility.
+
+Testing focused on core user journeys including browsing resources, authentication, form submission, commenting, and filtering behaviour.
+
+| Browser | Version Tested            | Result | Notes                                              |
+| ------- | ------------------------- | ------ | -------------------------------------------------- |
+| Chrome  | Latest (Desktop & Mobile) | Pass   | Primary development and testing browser            |
+| Firefox | Latest                    | Pass   | No visual or functional issues observed            |
+| Safari  | Latest (macOS)            | Pass   | Tested on macOS; layout and forms behave correctly |
+| Edge    | Latest                    | Pass   | No compatibility issues detected                   |
+
+### Notes
+
+- All browsers tested fully support:
+  - semantic HTML5 elements
+  - modern CSS (Flexbox, Grid, CSS flters, custom properties)
+  - JavaScript ES modules used in the project
+- No polyfills or browser-specific fallbacks were required.
+- Internet Explorer is not supported, as it is deprecated and not required by the assessment brief.
+
+Browser testing was carried out using a combination of real devices and browser developer tools.
 
 ## Accessibility
 
