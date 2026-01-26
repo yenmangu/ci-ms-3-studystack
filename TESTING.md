@@ -118,18 +118,51 @@ The application was tested across multiple viewport sizes using browser develope
 | Create / Update Forms | Pass   | Pass   | Pass    | Inputs remain usable     |
 | Authentication        | Pass   | Pass   | Pass    | No overflow issues       |
 
+### Responsivity Evidence
+
+| Page                           | Mobile               | Tablet               | Desktop              |
+| ------------------------------ | -------------------- | -------------------- | -------------------- |
+| Home / List                    | ![View Screenshot]() | ![View Screenshot]() | ![View Screenshot]() |
+| Detail                         | ![View Screenshot]() | ![View Screenshot]() | ![View Screenshot]() |
+| Subjects                       | ![View Screenshot]() | ![View Screenshot]() | ![View Screenshot]() |
+| Subject-Resources (Join table) | ![View Screenshot]() | ![View Screenshot]() | ![View Screenshot]() |
+| Add/Edit Resource Form         | ![View Screenshot]() | ![View Screenshot]() | ![View Screenshot]() |
+| Comment Form                   | ![View Screenshot]() | ![View Screenshot]() | ![View Screenshot]() |
+| Auth (login)                   | ![View Screenshot]() | ![View Screenshot]() | ![View Screenshot]() |
+| Auth (registration)            | ![View Screenshot]() | ![View Screenshot]() | ![View Screenshot]() |
+
 ---
 
 ## Browser Compatibility
 
 The deployed application was tested on the following browsers:
 
-| Browser | Result | Notes                   |
-| ------- | ------ | ----------------------- |
-| Chrome  | Pass   | Full functionality      |
-| Firefox | Pass   | No visual issues        |
-| Safari  | Pass   | Tested on macOS         |
-| Edge    | Pass   | No compatibility issues |
+| Browser      | Result | Notes                   |
+| ------------ | ------ | ----------------------- |
+| Chrome       | Pass   | Full functionality      |
+| Opera        | Pass   | No compatibility issues |
+| Safari       | Pass   | Tested on macOS         |
+| iOS (Safari) | Pass   | Tested on iPhone 11 Pro |
+
+### Browser Compatibility Breakdown
+
+| Feature                        | Chrome               | Opera                | Safari               | iOS (Safari)         |
+| ------------------------------ | -------------------- | -------------------- | -------------------- | -------------------- |
+| Home (list)                    | ![View Screenshot]() | ![View Screenshot]() | ![View Screenshot]() | ![View Screenshot]() |
+| Detail                         | ![View Screenshot]() | ![View Screenshot]() | ![View Screenshot]() | ![View Screenshot]() |
+| Subjects                       | ![View Screenshot]() | ![View Screenshot]() | ![View Screenshot]() | ![View Screenshot]() |
+| Subject-Resources (Join table) | ![View Screenshot]() | ![View Screenshot]() | ![View Screenshot]() | ![View Screenshot]() |
+| Add Resource                   | ![View Screenshot]() | ![View Screenshot]() | ![View Screenshot]() | ![View Screenshot]() |
+| Edit Resource                  | ![View Screenshot]() | ![View Screenshot]() | ![View Screenshot]() | ![View Screenshot]() |
+| Delete Resource                | ![View Screenshot]() | ![View Screenshot]() | ![View Screenshot]() | ![View Screenshot]() |
+| Add Comment                    | ![View Screenshot]() | ![View Screenshot]() | ![View Screenshot]() | ![View Screenshot]() |
+| Edit Comment                   | ![View Screenshot]() | ![View Screenshot]() | ![View Screenshot]() | ![View Screenshot]() |
+| Delete Comment                 | ![View Screenshot]() | ![View Screenshot]() | ![View Screenshot]() | ![View Screenshot]() |
+| Auth (login)                   | ![View Screenshot]() | ![View Screenshot]() | ![View Screenshot]() | ![View Screenshot]() |
+| Auth (logout)                  | ![View Screenshot]() | ![View Screenshot]() | ![View Screenshot]() | ![View Screenshot]() |
+| Auth (registration)            | ![View Screenshot]() | ![View Screenshot]() | ![View Screenshot]() | ![View Screenshot]() |
+| Messages (Success)             | ![View Screenshot]() | ![View Screenshot]() | ![View Screenshot]() | ![View Screenshot]() |
+| Messages (Info)                | ![View Screenshot]() | ![View Screenshot]() | ![View Screenshot]() | ![View Screenshot]() |
 
 ---
 
@@ -201,13 +234,13 @@ These decisions reflect an understanding of real-world performance trade-offs, p
 
 Manual testing was carried out to ensure the application behaves safely and predictably under invalid or unexpected user actions.
 
-| Feature             | Expectation         | Result | Notes              |
-| ------------------- | ------------------- | ------ | ------------------ |
-| Unauthorised edit   | Non-authors blocked | Pass   | 403 returned       |
-| Unauthorised delete | Non-authors blocked | Pass   | Object retained    |
-| Invalid form input  | Errors displayed    | Pass   | No crashes         |
-| Missing resource    | 404 shown           | Pass   | Custom error page  |
-| Draft access        | Hidden from public  | Pass   | Author-only access |
+| Feature             | Expectation         | Result | Notes              | Evidence                                                               |
+| ------------------- | ------------------- | ------ | ------------------ | ---------------------------------------------------------------------- |
+| Unauthorised edit   | Non-authors blocked | Pass   | 403 returned       | ![View screenshot](./documentation/defensive/unauth_edit_redirect.gif) |
+| Unauthorised delete | Non-authors blocked | Pass   | Object retained    | ![View screenshot]()                                                   |
+| Invalid form input  | Errors displayed    | Pass   | No crashes         | ![View screenshot]()                                                   |
+| Missing resource    | 404 shown           | Pass   | Custom error page  | ![View screenshot]()                                                   |
+| Draft access        | Hidden from public  | Pass   | Author-only access | ![View screenshot]()                                                   |
 
 ---
 
@@ -216,24 +249,24 @@ Manual testing was carried out to ensure the application behaves safely and pred
 User stories were manually verified against acceptance criteria.
 All user stories shown in the project board were marked as _Done_ only after successful manual verification against acceptance criteria.
 
-| User Story               | Description                             | Test Performed                                       | Result |
-| ------------------------ | --------------------------------------- | ---------------------------------------------------- | ------ |
-| View home page           | User can view the landing page          | Loaded home page as anonymous and authenticated user | Pass   |
-| Browse resources         | User can browse all published resources | Verified resource list shows only published items    | Pass   |
-| View resource detail     | User can view a single resource         | Opened resource detail page via list and direct URL  | Pass   |
-| Security and permissions | Access restricted based on user role    | Tested access as anonymous, author, and non-author   | Pass   |
-| Login / logout           | User can log in and log out             | Logged in, logged out, verified session state        | Pass   |
-| Register account         | User can create an account              | Registered new user and verified login success       | Pass   |
-| Validation and errors    | Errors shown for invalid actions        | Submitted invalid forms and checked error feedback   | Pass   |
-| Admin manage content     | Admin can manage content                | Verified admin CRUD via Django admin                 | Pass   |
-| Delete comment           | User can delete own comment             | Deleted own comment; blocked deletion by other users | Pass   |
-| Edit resource            | Author can edit own resource            | Edited resource; verified updates persisted          | Pass   |
-| Add comment              | Logged-in user can add comments         | Added comment; verified display and association      | Pass   |
-| Create resource          | Logged-in user can create a resource    | Created resource; verified saved as draft/published  | Pass   |
-| Delete resource          | Author can delete own resource          | Deleted resource; confirmed DB record removal        | Pass   |
-| Filter resources         | User can filter resources               | Applied filters and verified result set              | Pass   |
-| Search resources         | User can search for resources           | Performed keyword search and validated results       | Pass   |
-| Responsive design        | Site works across screen sizes          | Tested layouts on mobile, tablet, and desktop        | Pass   |
+| User Story               | Description                             | Test Performed                                                                       | Result | Evidence             |
+| ------------------------ | --------------------------------------- | ------------------------------------------------------------------------------------ | ------ | -------------------- |
+| View home page           | User can view the landing page          | Loaded home page as anonymous and authenticated user                                 | Pass   | ![View screenshot]() |
+| Browse resources         | User can browse all published resources | Verified resource list shows only published items and currently auth'd user's drafts | Pass   | ![View screenshot]() |
+| View resource detail     | User can view a single resource         | Opened resource detail page via list and direct URL                                  | Pass   | ![View screenshot]() |
+| Security and permissions | Access restricted based on user role    | Tested access as anonymous, author, and non-author                                   | Pass   | ![View screenshot]() |
+| Login / logout           | User can log in and log out             | Logged in, logged out, verified session state                                        | Pass   | ![View screenshot]() |
+| Register account         | User can create an account              | Registered new user and verified login success                                       | Pass   | ![View screenshot]() |
+| Validation and errors    | Errors shown for invalid actions        | Submitted invalid forms and checked error feedback                                   | Pass   | ![View screenshot]() |
+| Admin manage content     | Admin can manage content                | Verified admin CRUD via Django admin                                                 | Pass   | ![View screenshot]() |
+| Delete comment           | User can delete own comment             | Deleted own comment; blocked deletion by other users                                 | Pass   | ![View screenshot]() |
+| Edit resource            | Author can edit own resource            | Edited resource; verified updates persisted                                          | Pass   | ![View screenshot]() |
+| Add comment              | Logged-in user can add comments         | Added comment; verified display and association                                      | Pass   | ![View screenshot]() |
+| Create resource          | Logged-in user can create a resource    | Created resource; verified saved as draft/published                                  | Pass   | ![View screenshot]() |
+| Delete resource          | Author can delete own resource          | Deleted resource; confirmed DB record removal                                        | Pass   | ![View screenshot]() |
+| Filter resources         | User can filter resources               | Applied filters and verified result set                                              | Pass   | ![View screenshot]() |
+| Search resources         | User can search for resources           | Performed keyword search and validated results                                       | Pass   | ![View screenshot]() |
+| Responsive design        | Site works across screen sizes          | Tested layouts on mobile, tablet, and desktop                                        | Pass   | ![View screenshot]() |
 
 ---
 
@@ -251,6 +284,7 @@ Examples include:
 
 > [!NOTE]
 > See [Bugs](./README.md#development-bugs) for a comprehensive bugs report.
+> Where applicable, GitHub Issues have been resolved with an accompanying screenshot to provide evidence.
 
 ---
 
