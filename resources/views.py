@@ -400,7 +400,7 @@ class CreateResource(
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context["heading"] = "Create"
+        context["heading"] = "Add"
 
         return context
 
