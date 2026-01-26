@@ -51,10 +51,10 @@ All custom CSS files were validated using the **W3C Jigsaw CSS Validator**.
 >
 > CSS custom properties are a core feature of modern CSS and are used extensively by frameworks such as Bootstrap 5.
 
-| File      | Purpose                   | Result | Screenshot                                                         |
-| --------- | ------------------------- | ------ | ------------------------------------------------------------------ |
-| style.css | Custom site styles        | Pass   | ![screenshot](./documentation/validation/style-css-validation.png) |
-| theme.css | Component-specific styles | Fail   | ![screenshot](./documentation/validation/theme-css-validation.png) |
+| File      | Purpose                   | Result                  | Screenshot                                                         |
+| --------- | ------------------------- | ----------------------- | ------------------------------------------------------------------ |
+| style.css | Custom site styles        | Pass                    | ![screenshot](./documentation/validation/style-css-validation.png) |
+| theme.css | Component-specific styles | Errors - see note above | ![screenshot](./documentation/validation/theme-css-validation.png) |
 
 Any warnings encountered were related to modern CSS features and did not impact browser support or accessibility.
 
@@ -118,7 +118,7 @@ The application was tested across multiple viewport sizes using browser develope
 | Create / Update Forms | Pass   | Pass   | Pass    | Inputs remain usable     |
 | Authentication        | Pass   | Pass   | Pass    | No overflow issues       |
 
-### Responsivity Evidence
+### Responsiveness Evidence
 
 | Page                           | Mobile                                                                                | Tablet                                                                                | Desktop                                                                                |
 | ------------------------------ | ------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- |
@@ -163,7 +163,7 @@ Each core feature was manually tested across multiple browsers and devices to en
 
 - All browsers tested fully support:
   - semantic HTML5 elements
-  - modern CSS (Flexbox, Grid, CSS flters, custom properties)
+  - modern CSS (Flexbox, Grid, CSS filters, custom properties)
   - JavaScript ES modules used in the project
 - No polyfills or browser-specific fallbacks were required.
 - Internet Explorer is not supported, as it is deprecated and not required by the assessment brief.
@@ -195,7 +195,7 @@ Screenshots of the audit results are stored in `documentation/lighthouse/reports
 
 ### Notes on Results
 
-Desktop Lighthouse audits consistently achieved **Excellent** scores due to higher available bandwidth and the absence of simulated network throttling. Mobile audits achieved **Good** results, with minor reductions primarily caused by Lighthouse’s slow network simulation, initial image loading costs, and the presence of render-blocking CSS required for layout stability.
+Desktop Lighthouse audits consistently achieved Excellent scores across all categories due to higher available bandwidth and the absence of simulated network throttling. Mobile audits achieved **Good** results, with minor reductions primarily caused by Lighthouse’s slow network simulation, initial image loading costs, and the presence of render-blocking CSS required for layout stability.
 
 Some stylesheets (Bootstrap and theme-level CSS variables) are intentionally render-blocking to ensure visual consistency and prevent layout shift during initial paint. During optimisation, deferring theme-level CSS resulted in increased layout shift and reduced Lighthouse scores. The final implementation therefore reflects a deliberate trade-off favouring visual stability (CLS within “Good” thresholds) over aggressive CSS deferral
 
@@ -239,14 +239,19 @@ These decisions reflect an understanding of real-world performance trade-offs, p
 ## Defensive Programming
 
 Manual testing was carried out to ensure the application behaves safely and predictably under invalid or unexpected user actions.
+All defensive behaviours are enforced server-side and verified via manual interaction.
 
-| Feature             | Expectation         | Result | Notes              | Evidence                                                               |
-| ------------------- | ------------------- | ------ | ------------------ | ---------------------------------------------------------------------- |
-| Unauthorised edit   | Non-authors blocked | Pass   | 403 returned       | ![View screenshot](./documentation/defensive/unauth_edit_redirect.gif) |
-| Unauthorised delete | Non-authors blocked | Pass   | Object retained    | ![View screenshot]()                                                   |
-| Invalid form input  | Errors displayed    | Pass   | No crashes         | ![View screenshot]()                                                   |
-| Missing resource    | 404 shown           | Pass   | Custom error page  | ![View screenshot]()                                                   |
-| Draft access        | Hidden from public  | Pass   | Author-only access | ![View screenshot]()                                                   |
+| Feature                           | Expectation              | Result | Notes                                      | Evidence                                                                 |
+| --------------------------------- | ------------------------ | ------ | ------------------------------------------ | ------------------------------------------------------------------------ |
+| Unauthorised edit (Not logged in) | Anonymous users blocked  | Pass   | Redirected to login before edit allowed    | ![Screenshot](./documentation/defensive/unauth_edit_redirect.gif)        |
+| Unauthorised edit (Non-author)    | Non-authors blocked      | Pass   | Custom 403 Forbidden page returned         | ![Screenshot](./documentation/defensive/test-403.png)                    |
+| Unauthorised delete               | Non-authors blocked      | Pass   | Resource retained; delete action denied    | ![Screenshot](./documentation/defensive/forced-delete-forbidden.png)     |
+| Invalid form input                | Validation errors shown  | Pass   | Server-side validation prevents submission | ![Screenshot](./documentation/defensive/server-side-form-validation.png) |
+| Missing resource                  | Graceful failure         | Pass   | Custom 404 page displayed                  | ![Screenshot](./documentation/defensive/test-404.png)                    |
+| Internal server error             | Application fails safely | Pass   | Custom 500 page rendered                   | ![Screenshot](./documentation/defensive/test-500.png)                    |
+| Password too common               | Weak passwords rejected  | Pass   | Django password validators enforced        | ![Screenshot](./documentation/defensive/password-too-common.png)         |
+| Password too short                | Minimum length enforced  | Pass   | Browser-independent validation confirmed   | ![Screenshot](./documentation/defensive/password-too-short.png)          |
+| Comment form (Not authenticated)  | Anonymous users blocked  | Pass   | Comment form hidden / access denied        | ![Screenshot](./documentation/defensive/comment-form-not-auth.png)       |
 
 ---
 
@@ -255,24 +260,25 @@ Manual testing was carried out to ensure the application behaves safely and pred
 User stories were manually verified against acceptance criteria.
 All user stories shown in the project board were marked as _Done_ only after successful manual verification against acceptance criteria.
 
-| User Story               | Description                             | Test Performed                                                                       | Result | Evidence             |
-| ------------------------ | --------------------------------------- | ------------------------------------------------------------------------------------ | ------ | -------------------- |
-| View home page           | User can view the landing page          | Loaded home page as anonymous and authenticated user                                 | Pass   | ![View screenshot]() |
-| Browse resources         | User can browse all published resources | Verified resource list shows only published items and currently auth'd user's drafts | Pass   | ![View screenshot]() |
-| View resource detail     | User can view a single resource         | Opened resource detail page via list and direct URL                                  | Pass   | ![View screenshot]() |
-| Security and permissions | Access restricted based on user role    | Tested access as anonymous, author, and non-author                                   | Pass   | ![View screenshot]() |
-| Login / logout           | User can log in and log out             | Logged in, logged out, verified session state                                        | Pass   | ![View screenshot]() |
-| Register account         | User can create an account              | Registered new user and verified login success                                       | Pass   | ![View screenshot]() |
-| Validation and errors    | Errors shown for invalid actions        | Submitted invalid forms and checked error feedback                                   | Pass   | ![View screenshot]() |
-| Admin manage content     | Admin can manage content                | Verified admin CRUD via Django admin                                                 | Pass   | ![View screenshot]() |
-| Delete comment           | User can delete own comment             | Deleted own comment; blocked deletion by other users                                 | Pass   | ![View screenshot]() |
-| Edit resource            | Author can edit own resource            | Edited resource; verified updates persisted                                          | Pass   | ![View screenshot]() |
-| Add comment              | Logged-in user can add comments         | Added comment; verified display and association                                      | Pass   | ![View screenshot]() |
-| Create resource          | Logged-in user can create a resource    | Created resource; verified saved as draft/published                                  | Pass   | ![View screenshot]() |
-| Delete resource          | Author can delete own resource          | Deleted resource; confirmed DB record removal                                        | Pass   | ![View screenshot]() |
-| Filter resources         | User can filter resources               | Applied filters and verified result set                                              | Pass   | ![View screenshot]() |
-| Search resources         | User can search for resources           | Performed keyword search and validated results                                       | Pass   | ![View screenshot]() |
-| Responsive design        | Site works across screen sizes          | Tested layouts on mobile, tablet, and desktop                                        | Pass   | ![View screenshot]() |
+| User Story               | Description                             | Test Performed                                                                       | Result | Evidence                                                                        |
+| ------------------------ | --------------------------------------- | ------------------------------------------------------------------------------------ | ------ | ------------------------------------------------------------------------------- |
+| View home page           | User can view the landing page          | Loaded home page as anonymous and authenticated user                                 | Pass   | ![View screenshot](./documentation/features/home-anonymous.png)                 |
+| Browse resources         | User can browse all published resources | Verified resource list shows only published items and currently auth'd user's drafts | Pass   | ![View screenshot](./documentation/features/browse-resources.png)               |
+| View resource detail     | User can view a single resource         | Opened resource detail page via list and direct URL                                  | Pass   | ![View screenshot](./documentation/features/view-detail.png)                    |
+| Security and permissions | Access restricted based on user role    | Tested access as anonymous, author, and non-author                                   | Pass   | ![View screenshot](./documentation/features/access-restricted.png)              |
+| Login                    | User can log in                         | Logged in, verified session state                                                    | Pass   | ![View screenshot](./documentation/features/signed-in.png)                      |
+| Logout                   | User can log out                        | Logged out, verified session state                                                   | Pass   | ![View screenshot](./documentation/features/logout.png)                         |
+| Register account         | User can create an account              | Registered new user and verified login success                                       | Pass   | ![View screenshot](./documentation/features/new-signup-message.png)             |
+| Validation and errors    | Errors shown for invalid actions        | Submitted invalid forms and checked error feedback                                   | Pass   | ![View screenshot](./documentation/features/message-error.png)                  |
+| Admin manage content     | Admin can manage content                | Verified admin CRUD via Django admin                                                 | Pass   | ![View screenshot](./documentation/features/admin.png)                          |
+| Delete comment           | User can delete own comment             | Deleted own comment; blocked deletion by other users                                 | Pass   | ![View screenshot](./documentation/features/comment-delete-confirm-desktop.png) |
+| Edit resource            | Author can edit own resource            | Edited resource; verified updates persisted                                          | Pass   | ![View screenshot](./documentation/features/add-edit-resource-desktop.png)      |
+| Add comment              | Logged-in user can add comments         | Added comment; verified display and association                                      | Pass   | ![View screenshot](./documentation/features/comment-form-desktop.png)           |
+| Create resource          | Logged-in user can create a resource    | Created resource; verified saved as draft/published                                  | Pass   | ![View screenshot](./documentation/features/add-edit-resource-desktop.png)      |
+| Delete resource          | Author can delete own resource          | Deleted resource; confirmed DB record removal                                        | Pass   | ![View screenshot](./documentation/features/delete-resources.png)               |
+| Filter resources         | User can filter resources               | Applied filters and verified result set                                              | Pass   | ![View screenshot](./documentation/features/search-filter-resources.png)        |
+| Search resources         | User can search for resources           | Performed keyword search and validated results                                       | Pass   | ![View screenshot](./documentation/features/search-filter-resources.png)        |
+| Responsive design        | Site works across screen sizes          | Tested layouts on mobile, tablet, and desktop                                        | Pass   | see [Responsiveness](#responsiveness)                                           |
 
 ---
 
@@ -298,6 +304,9 @@ Examples include:
 
 > [!IMPORTANT]
 > There are no known unfixed bugs at the time of submission.
+> To check, visit [**The GitHub Issues page**](https://github.com/yenmangu/ci-ms-3-studystack/issues).
+
+![Screenshot](./documentation/agile/screenshots/no-open-issues.png)
 
 ---
 
