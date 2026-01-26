@@ -398,6 +398,12 @@ class CreateResource(
         form.instance.author = self.request.user
         return super().form_valid(form)
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["heading"] = "Create"
+
+        return context
+
     def get_success_url(self):
         """
         Redirect to the newly created Resource detail view.
@@ -552,6 +558,11 @@ class ResourceUpdate(
         if not resource.pk:
             resource.author = self.request.user
         return super().form_valid(form)
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["heading"] = "Edit"
+        return context
 
     def get_success_url(self):
         """
