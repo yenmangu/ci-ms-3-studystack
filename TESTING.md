@@ -120,16 +120,15 @@ The application was tested across multiple viewport sizes using browser develope
 
 ### Responsivity Evidence
 
-| Page                           | Mobile               | Tablet               | Desktop              |
-| ------------------------------ | -------------------- | -------------------- | -------------------- |
-| Home / List                    | ![View Screenshot]() | ![View Screenshot]() | ![View Screenshot]() |
-| Detail                         | ![View Screenshot]() | ![View Screenshot]() | ![View Screenshot]() |
-| Subjects                       | ![View Screenshot]() | ![View Screenshot]() | ![View Screenshot]() |
-| Subject-Resources (Join table) | ![View Screenshot]() | ![View Screenshot]() | ![View Screenshot]() |
-| Add/Edit Resource Form         | ![View Screenshot]() | ![View Screenshot]() | ![View Screenshot]() |
-| Comment Form                   | ![View Screenshot]() | ![View Screenshot]() | ![View Screenshot]() |
-| Auth (login)                   | ![View Screenshot]() | ![View Screenshot]() | ![View Screenshot]() |
-| Auth (registration)            | ![View Screenshot]() | ![View Screenshot]() | ![View Screenshot]() |
+| Page                           | Mobile                                                                                | Tablet                                                                                | Desktop                                                                                |
+| ------------------------------ | ------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- |
+| Home / List                    | ![View Screenshot](./documentation/responsiveness/sizes/home-mobile.png)              | ![View Screenshot](./documentation/responsiveness/sizes/home-tablet.png)              | ![View Screenshot](./documentation/responsiveness/sizes/home-desktop.png)              |
+| Detail                         | ![View Screenshot](./documentation/responsiveness/sizes/detail-mobile.png)            | ![View Screenshot](./documentation/responsiveness/sizes/detail-tablet.png)            | ![View Screenshot](./documentation/responsiveness/sizes/detail-desktop.png)            |
+| Subjects                       | ![View Screenshot](./documentation/responsiveness/sizes/subjects-mobile.png)          | ![View Screenshot](./documentation/responsiveness/sizes/subjects-tablet.png)          | ![View Screenshot](./documentation/responsiveness/sizes/subjects-desktop.png)          |
+| Subject-Resources (Join table) | ![View Screenshot](./documentation/responsiveness/sizes/subject-resources-mobile.png) | ![View Screenshot](./documentation/responsiveness/sizes/subject-resources-tablet.png) | ![View Screenshot](./documentation/responsiveness/sizes/subject-resources-desktop.png) |
+| Add/Edit Resource Form         | ![View Screenshot](./documentation/responsiveness/sizes/add-edit-resource-mobile.png) | ![View Screenshot](./documentation/responsiveness/sizes/add-edit-resource-tablet.png) | ![View Screenshot](./documentation/responsiveness/sizes/add-edit-resource-desktop.png) |
+| Comment Form                   | ![View Screenshot](./documentation/responsiveness/sizes/comment-form-mobile.png)      | ![View Screenshot](./documentation/responsiveness/sizes/comment-form-tablet.png)      | ![View Screenshot](./documentation/responsiveness/sizes/comment-form-desktop.png)      |
+| Auth (login)                   | ![View Screenshot](./documentation/responsiveness/sizes/auth-login-mobile.png)        | ![View Screenshot](./documentation/responsiveness/sizes/auth-login-tablet.png)        | ![View Screenshot](./documentation/responsiveness/sizes/auth-login-desktop.png)        |
 
 ---
 
@@ -146,23 +145,30 @@ The deployed application was tested on the following browsers:
 
 ### Browser Compatibility Breakdown
 
-| Feature                        | Chrome               | Opera                | Safari               | iOS (Safari)         |
-| ------------------------------ | -------------------- | -------------------- | -------------------- | -------------------- |
-| Home (list)                    | ![View Screenshot]() | ![View Screenshot]() | ![View Screenshot]() | ![View Screenshot]() |
-| Detail                         | ![View Screenshot]() | ![View Screenshot]() | ![View Screenshot]() | ![View Screenshot]() |
-| Subjects                       | ![View Screenshot]() | ![View Screenshot]() | ![View Screenshot]() | ![View Screenshot]() |
-| Subject-Resources (Join table) | ![View Screenshot]() | ![View Screenshot]() | ![View Screenshot]() | ![View Screenshot]() |
-| Add Resource                   | ![View Screenshot]() | ![View Screenshot]() | ![View Screenshot]() | ![View Screenshot]() |
-| Edit Resource                  | ![View Screenshot]() | ![View Screenshot]() | ![View Screenshot]() | ![View Screenshot]() |
-| Delete Resource                | ![View Screenshot]() | ![View Screenshot]() | ![View Screenshot]() | ![View Screenshot]() |
-| Add Comment                    | ![View Screenshot]() | ![View Screenshot]() | ![View Screenshot]() | ![View Screenshot]() |
-| Edit Comment                   | ![View Screenshot]() | ![View Screenshot]() | ![View Screenshot]() | ![View Screenshot]() |
-| Delete Comment                 | ![View Screenshot]() | ![View Screenshot]() | ![View Screenshot]() | ![View Screenshot]() |
-| Auth (login)                   | ![View Screenshot]() | ![View Screenshot]() | ![View Screenshot]() | ![View Screenshot]() |
-| Auth (logout)                  | ![View Screenshot]() | ![View Screenshot]() | ![View Screenshot]() | ![View Screenshot]() |
-| Auth (registration)            | ![View Screenshot]() | ![View Screenshot]() | ![View Screenshot]() | ![View Screenshot]() |
-| Messages (Success)             | ![View Screenshot]() | ![View Screenshot]() | ![View Screenshot]() | ![View Screenshot]() |
-| Messages (Info)                | ![View Screenshot]() | ![View Screenshot]() | ![View Screenshot]() | ![View Screenshot]() |
+Each core feature was manually tested across multiple browsers and devices to ensure consistent behaviour and layout.
+
+| Feature                        | Chrome                                                                           | Opera                                                                   | Safari                                                                   | iOS (Safari)                                                          |
+| ------------------------------ | -------------------------------------------------------------------------------- | ----------------------------------------------------------------------- | ------------------------------------------------------------------------ | --------------------------------------------------------------------- |
+| Home (list)                    | ![View Screenshot](./documentation/browser/chrome/home-desktop.png)              | ![View Screenshot](./documentation/browser/opera/home.png)              | ![View Screenshot](./documentation/browser/safari/home.png)              | ![View Screenshot](./documentation/browser/iOS/home.png)              |
+| Detail                         | ![View Screenshot](./documentation/browser/chrome/detail-desktop.png)            | ![View Screenshot](./documentation/browser/opera/detail.png)            | ![View Screenshot](./documentation/browser/safari/detail.png)            | ![View Screenshot](./documentation/browser/iOS/detail.png)            |
+| Subjects                       | ![View Screenshot](./documentation/browser/chrome/subjects-desktop.png)          | ![View Screenshot](./documentation/browser/opera/subjects.png)          | ![View Screenshot](./documentation/browser/safari/subjects.png)          | ![View Screenshot](./documentation/browser/iOS/subjects.png)          |
+| Subject-Resources (Join table) | ![View Screenshot](./documentation/browser/chrome/subject-resources-desktop.png) | ![View Screenshot](./documentation/browser/opera/subject-resources.png) | ![View Screenshot](./documentation/browser/safari/subject-resources.png) | ![View Screenshot](./documentation/browser/iOS/subject-resources.png) |
+| Add/Edit Resource              | ![View Screenshot](./documentation/browser/chrome/add-edit-resource-desktop.png) | ![View Screenshot](./documentation/browser/opera/add-edit-resource.png) | ![View Screenshot](./documentation/browser/safari/add-edit-resource.png) | ![View Screenshot](./documentation/browser/iOS/add-edit-resource.png) |
+| Add/Edit Comment               | ![View Screenshot](./documentation/browser/chrome/comment-edit-desktop.png)      | ![View Screenshot](./documentation/browser/opera/add-edit-comment.png)  | ![View Screenshot](./documentation/browser/safari/add-edit-comment.png)  | ![View Screenshot](./documentation/browser/iOS/add-edit-comment.png)  |
+| Auth (login)                   | ![View Screenshot](./documentation/browser/chrome/auth-login-desktop.png)        | ![View Screenshot](./documentation/browser/opera/auth-sign-in.png)      | ![View Screenshot](./documentation/browser/safari/auth-sign-in.png)      | ![View Screenshot](./documentation/browser/iOS/auth-login.png)        |
+| Auth (logout)                  | ![View Screenshot](./documentation/browser/chrome/auth-logout.png)               | ![View Screenshot](./documentation/browser/opera/auth-logout.png)       | ![View Screenshot](./documentation/browser/safari/auth-logout.png)       | ![View Screenshot](./documentation/browser/iOS/auth-logout.png)       |
+| Auth (registration)            | ![View Screenshot](./documentation/browser/chrome/auth-registration.png)         | ![View Screenshot](./documentation/browser/opera/auth-registration.png) | ![View Screenshot](./documentation/browser/safari/auth-registration.png) | ![View Screenshot](./documentation/browser/iOS/auth-registration.png) |
+
+#### Notes
+
+- All browsers tested fully support:
+  - semantic HTML5 elements
+  - modern CSS (Flexbox, Grid, CSS flters, custom properties)
+  - JavaScript ES modules used in the project
+- No polyfills or browser-specific fallbacks were required.
+- Internet Explorer is not supported, as it is deprecated and not required by the assessment brief.
+
+Browser testing was carried out using a combination of real devices and browser developer tools.
 
 ---
 
@@ -295,9 +301,25 @@ Examples include:
 
 ---
 
-### Known Issues
+## Known Issues
 
-Despite thorough testing, it is not possible to guarantee that all edge cases have been identified. The application has been tested extensively and behaves as expected across all documented scenarios.
+### TinyMCE console errors (third-party)
+
+The project uses the TinyMCE plugin to provide a WYSIWYG editor for rich-text fields. During manual testing, browser developer tools displayed console errors originating from TinyMCE’s client-side scripts.
+
+These errors:
+
+- originate from third-party code,
+- do not prevent content creation or editing,
+- do not affect form submission or saved data,
+- do not impact user-facing functionality.
+
+#### Evidence
+
+| Device | Screenshot                                                                                                  |
+| ------ | ----------------------------------------------------------------------------------------------------------- |
+| Mobile | ![TinyMCE console errors on mobile](./documentation/responsiveness/sizes/create-tiny_mce-errors-mobile.png) |
+| Tablet | ![TinyMCE console errors on tablet](./documentation/responsiveness/sizes/create-tiny_mce-errors-tablet.png) |
 
 ---
 
