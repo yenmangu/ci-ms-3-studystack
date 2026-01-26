@@ -11,27 +11,183 @@ This separation ensures production security while keeping documentation publicly
 
 ---
 
-## Application Deployment (Heroku)
+## Deploying StudyStack to Heroku
 
-StudyStack is deployed using **Heroku**, following Django production best practices.
+This document provides a complete, step-by-step guide for deploying the **StudyStack** Django application to **Heroku**.
+It is intended for assessment, documentation, and reproducibility purposes.
 
-The production environment includes:
-
-- **PostgreSQL** as the primary database
-- **Cloudinary** for user-uploaded media storage
-- **Whitenoise** for serving static files
-- **Environment variables** for secrets and environment-specific configuration
-
-The application automatically detects whether it is running locally or on Heroku and adjusts settings such as `DEBUG`, database engine, and static file handling accordingly.
-
-Key characteristics of the Heroku deployment:
-
-- `DEBUG` is disabled in production
-- Sensitive values (e.g. `SECRET_KEY`, Cloudinary credentials) are never committed to source control
-- Static files are collected and served efficiently
-- Media uploads are handled externally via Cloudinary
+The deployment process follows Django production best practices.
 
 ---
+
+### Overview
+
+StudyStack uses a **split deployment strategy**:
+
+- **Heroku** hosts the live Django application
+- **GitHub Pages** hosts documentation and assessment assets only
+
+This document covers **Heroku deployment only**.
+
+---
+
+### Prerequisites
+
+Before deploying, ensure you have:
+
+- A **Heroku account**
+- A **GitHub account**
+- The StudyStack repository pushed to GitHub
+- A **Cloudinary account** (for media uploads)
+- Python dependencies listed in `requirements.txt`
+- A valid `Procfile` in the project root
+
+---
+
+### Create a Heroku App
+
+1. Log in to the Heroku dashboard.
+2. Click **New → Create new app**.
+3. Enter a unique application name.
+4. Select the appropriate region (e.g. Europe).
+5. Click **Create app**.
+
+---
+
+### Configure Environment Variables
+
+In the Heroku dashboard:
+
+1. Navigate to **Settings → Reveal Config Vars**.
+2. Add the following environment variables:
+
+| Key                   | Description                            |
+| --------------------- | -------------------------------------- |
+| SECRET_KEY            | Django secret key                      |
+| CLOUDINARY_URL        | Cloudinary API connection string       |
+| DATABASE_URL          | Automatically set by Heroku Postgres   |
+| TINY_MCE_KEY          | TinyMCE API key                        |
+| DISABLE_COLLECTSTATIC | `1` (temporary, optional during setup) |
+
+> [!IMPORTANT]
+> Remove `DISABLE_COLLECTSTATIC` when ready to push production, otherwise static files will not be collected.
+
+Sensitive values are never committed to source control and are managed exclusively through Heroku’s environment configuration.
+
+---
+
+### Attach a PostgreSQL Database
+
+1. In the Heroku dashboard, go to the **Resources** tab.
+2. Add **Heroku Postgres**.
+3. Select the free or appropriate tier.
+4. Heroku automatically provisions the database and sets `DATABASE_URL`.
+
+---
+
+### Prepare the Project for Deployment
+
+Ensure the following files and settings are present:
+
+#### `requirements.txt`
+
+Contains all Python dependencies required for the project.
+
+#### `Procfile`
+
+Defines the application entry point for Heroku.
+
+Example:
+
+```
+web: gunicorn studystack.wsgi
+```
+
+#### `settings.py` (Production Configuration)
+
+Confirm that:
+
+- `DEBUG` is disabled in production
+- `ALLOWED_HOSTS` includes the Heroku app domain
+- Database configuration reads from `DATABASE_URL`
+- Whitenoise is enabled for static file handling
+- Cloudinary is configured for media storage
+- Secrets are loaded from environment variables
+
+---
+
+### Connect GitHub to Heroku
+
+1. Open the Heroku app dashboard.
+2. Navigate to the **Deploy** tab.
+3. Select **GitHub** as the deployment method.
+4. Authorise Heroku to access your GitHub account.
+5. Search for and connect the StudyStack repository.
+
+---
+
+### Deploy the Application
+
+1. Select the branch to deploy (typically `main`).
+2. Click **Deploy Branch**.
+3. Wait for the build process to complete.
+
+A successful deployment will display a **“Build succeeded”** message.
+
+---
+
+### Apply Database Migrations
+
+After deployment:
+
+1. Open the **Heroku CLI** or use the dashboard console.
+2. Run the following command:
+   ```
+   python manage.py migrate
+   ```
+3. (Optional) Create a superuser:
+   ```
+   python manage.py createsuperuser
+   ```
+
+---
+
+### Collect Static Files
+
+If static files are not automatically collected during deployment, run:
+
+```
+python manage.py collectstatic
+```
+
+Whitenoise serves static files directly in the production environment.
+
+---
+
+### Verify the Deployment
+
+Visit the deployed Heroku URL and confirm:
+
+- Pages load without errors
+- Static assets (CSS, JS) are served correctly
+- Media uploads function via Cloudinary
+- Authentication works as expected
+- CRUD functionality behaves correctly
+- `DEBUG` is disabled and no sensitive error information is exposed
+
+---
+
+### Deployment Notes
+
+- Heroku is used exclusively for the live Django application
+- GitHub Pages is used only for documentation and assessment evidence
+- Secrets and credentials are never committed to the repository
+- Environment variables control all sensitive configuration
+- Local development mirrors production behaviour where possible
+
+---
+
+The deployment was tested during development to ensure consistency between local and production environments.
 
 ## Documentation Hosting (GitHub Pages)
 
