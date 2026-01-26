@@ -13,9 +13,7 @@ https://docs.djangoproject.com/en/6.0/ref/settings/
 from pathlib import Path
 import os
 import sys
-from django.contrib.messages import constants as messages
 import dj_database_url
-
 
 if os.path.isfile("env.py"):
     import env
@@ -71,7 +69,6 @@ INSTALLED_APPS = [
     "tinymce",
     "django_filters",
     "core.apps.CoreConfig",
-    "home",
     "resources",
 ]
 
@@ -142,7 +139,10 @@ if "test" in sys.argv:
 
 
 # CSRF
-CSRF_TRUSTED_ORIGINS = ["https://*.codeinstitute-ide.net/", "https://*.herokuapp.com"]
+CSRF_TRUSTED_ORIGINS = [
+    "https://*.codeinstitute-ide.net/",
+    "https://*.herokuapp.com",
+]
 
 
 # Password validation
