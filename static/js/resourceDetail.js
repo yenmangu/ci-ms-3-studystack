@@ -47,8 +47,6 @@ const hasComments = document.getElementById('hasComments') || null;
 if (hasComments) {
 	for (let btn of editBtns) {
 		btn.addEventListener('click', e => {
-			console.log('btn: ', btn, 'clicked');
-
 			if (!commentText || !submitBtn) {
 				if (!commentText) console.log('No id_body');
 				if (!submitBtn) console.log('No submitBtn');

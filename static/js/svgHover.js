@@ -55,11 +55,8 @@ const ORIGINAL_STYLE_MAP = new WeakMap();
 
 		if (!iconKey) return;
 
-		console.log('Found iconKey for: ', svg);
-
 		const behaviour = ICON_BEHAVIOUR_MAP.get(iconKey);
 		if (!behaviour) return;
-		console.log('Found behaviour for: ', svg);
 
 		cacheOriginalStyles(svg);
 
@@ -76,8 +73,6 @@ const ORIGINAL_STYLE_MAP = new WeakMap();
 function setStrokeForAllPaths(svgEl, colour) {
 	const pathElements = svgEl.querySelectorAll('path');
 	pathElements.forEach(path => {
-		console.log('Setting stroke for path: ', path, ': ', colour);
-
 		path.setAttribute('stroke', colour);
 	});
 }
@@ -97,19 +92,14 @@ function setFill(svgEl, colour) {
  * @param {SVGElement} svg
  */
 function cacheOriginalStyles(svg) {
-	console.log(`Running for: `, svg);
-
 	if (ORIGINAL_STYLE_MAP.has(svg)) return;
 
 	const paths = [...svg.querySelectorAll('path')];
-	console.log('paths: ', paths);
 
 	ORIGINAL_STYLE_MAP.set(svg, {
 		stroke: paths.map(p => p.getAttribute('stroke')),
 		fill: paths.map(p => p.getAttribute('fill`'))
 	});
-
-	console.log('Original style map: ', ORIGINAL_STYLE_MAP);
 }
 
 /**
