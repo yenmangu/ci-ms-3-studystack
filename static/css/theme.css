@@ -52,3 +52,26 @@
 	--ss-text-muted: rgba(var(--ss-neutral-text-muted), 1);
 	--ss-border: rgba(var(--ss-neutral-border), 1);
 }
+/* ------------ Dark colour scheme ------------ */
+
+@media (prefers-color-scheme: dark) {
+	:root {
+		/* Base RGB values (raw) — dark mode */
+
+		--ss-bg-value: 18, 18, 18;
+		--ss-surface-value: 30, 30, 30;
+
+		--ss-text-value: 233, 236, 239;
+		--ss-text-muted-value: 173, 181, 189;
+
+		--ss-border-value: 52, 58, 64;
+
+		/* Accent colours (slightly lifted for contrast) */
+		--ss-academic-blue-value: 100, 149, 237;
+		--ss-slate-blue-value: 138, 180, 248;
+		--ss-amber-value: 255, 193, 7;
+
+		--ss-success-green-value: 76, 175, 80;
+		--ss-error-red-value: 239, 83, 80;
+	}
+}
