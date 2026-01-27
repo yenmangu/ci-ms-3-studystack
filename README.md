@@ -213,6 +213,19 @@ Project requirements were broken down into Epics and User Stories to ensure clea
 
 > [View Epics and User Story Mapping](documentation/agile/epics.md)
 
+### **MoSCoW** Prioritisation
+
+MoSCoW (Must, Should, Could, Won’t Have) was used to prioritise User Stories and manage scope.
+
+Epics were decomposed into User Stories and prioritised using the MoSCoW method. These priorities were applied and tracked using labels within GitHub Issues and Projects.
+
+- **Must Have**: guaranteed to be delivered - required to pass the project (_max ~60% of stories_)
+- **Should Have**: adds significant value, but not vital (_~20% of stories_)
+- **Could Have**: has small impact if left out (_the rest ~20% of stories_)
+- **Won't Have**: not a priority for this iteration - future features
+
+The prioritisation strategy outlined above was applied consistently across all User Stories, as shown below.
+
 ### User Stories
 
 Each user story includes defined acceptance criteria and is grouped under an Epic to demonstrate how features were planned, prioritised, and implemented throughout development.
@@ -236,22 +249,9 @@ Each user story includes defined acceptance criteria and is grouped under an Epi
 | 15  | Responsive Design           | Must Have       | [User Story](./documentation/agile/user-stories/user-story-15-responsive-design.md)        |
 | 16  | Security & Permissions      | Must Have       | [User Story](./documentation/agile/user-stories/user-story-16-security-and-permissions.md) |
 
-> MoSCoW prioritisation was used to manage scope and ensure all core assessment requirements were delivered before enhancement features.
-
 ---
 
 ## Features
-
-### **MoSCoW** Prioritisation
-
-Using the **Must-Have**, **Should-Have**, **Could-Have** and **Won't-Have** prioritisation method, the user stories are prioritised in order to better manage the time and resources of the project effectively.
-
-I've decomposed my Epics into User Stories for prioritizing and implementing them. Using this approach, I was able to apply "MoSCow" prioritization and labels to my User Stories within the Issues tab.
-
-- **Must Have**: guaranteed to be delivered - required to Pass the project (_max ~60% of stories_)
-- **Should Have**: adds significant value, but not vital (_~20% of stories_)
-- **Could Have**: has small impact if left out (_the rest ~20% of stories_)
-- **Won't Have**: not a priority for this iteration - future features
 
 ### Existing Features
 
@@ -333,8 +333,6 @@ across a range of interaction methods.
 
 ---
 
-#### Key References
-
 ## Database Design
 
 StudyStack uses a relational database to store study resources submitted by users.
@@ -391,7 +389,7 @@ This structure supports maintainability and future extension.
 
 > StudyStack is developed with a focus on maintainability, clarity, and modern best practices. Code is written to be self-documenting, with strong adherence to community conventions for version control, structure, and naming.
 
-### GIT
+### Git Commits
 
 We follow the [Conventional Commits](COMMIT_CONVENTIONS.md) specification.
 This ensures all commits are consistent, scoped, and easy to scan.
@@ -399,8 +397,6 @@ This ensures all commits are consistent, scoped, and easy to scan.
 > Note: Conventional Commits were adopted from 10 September 2025. Earlier commit messages may not follow this format.
 
 ### Python
-
-### Python Best Practices
 
 StudyStack follows established Python and Django best practices to ensure the codebase remains readable, maintainable, and easy to extend.
 
@@ -431,30 +427,29 @@ This approach ensures the Python codebase is robust, secure, and aligned with pr
 
 ### JavaScript
 
-All JavaScript in StudyStack uses modern [ES Module syntax](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules) (`import`/`export`) for modularity and maintainability.
+StudyStack uses JavaScript only for **progressive enhancement** and small DOM interactions.
+All core functionality (routing, rendering, validation, permissions, and persistence) is handled server-side by Django.
 
-- **Style conventions:**
-  - Lower camelCase for variables, functions, and files (no spaces or capitals for cross-platform safety).
-  - Functions and classes are documented with [JSDoc](https://jsdoc.app/) for strong IntelliSense and code navigation in VS Code.
-  - All major architectural patterns (store, emitter, service) are fully typed and documented.
-  - No build tools or transpilers are used; the codebase targets modern browsers (see [Browser Compatibility](#browser-compatibility)).
-- **Separation of concerns:**
-  - Logic, view rendering, and services are kept in separate modules for each component or slice.
+JavaScript is used to improve usability where appropriate, for example:
+
+- Triggering UI interactions such as button-driven behaviours and small state toggles.
+- Enhancing user feedback or convenience behaviours without changing the underlying workflow.
+- Supporting responsive UI behaviour where a small script is more reliable than CSS alone.
+
+Key principles:
+
+- **No critical dependency:** the application remains usable without JavaScript enabled.
+- **Small, focused scripts:** each script targets a specific UI behaviour and avoids coupling to unrelated parts of the site.
+- **Maintainable structure:** scripts use clear naming, are kept minimal, and avoid unnecessary complexity or external dependencies.
+- **Accessibility-aware:** interactive elements preserve keyboard accessibility and do not rely on JavaScript-only patterns to convey essential information.
 
 ### HTML
 
-- All HTML is written in semantic, accessible markup.
-- Components are structured using appropriate tags (`<main>`, `<nav>`, `<header>`, `<section>`, `<article>`, etc.).
-- ARIA roles and labels are included where necessary for screen readers and assistive tech.
-- No inline styles or scripts; all behaviour and styling is in linked external files.
-
-> **Exception:**
-> For technical reasons, certain parts of the app (such as the responsive header system) programmatically apply inline styles directly to `document.documentElement` (the `<html>` tag) at runtime.
-> This is necessary for responsive scroll animation and to ensure CSS variables are synchronised across viewport and header changes—techniques which cannot be fully achieved via static CSS alone.
-> All such inline styles are set and managed via dedicated JavaScript modules (e.g., `responsiveHeader.js`), and are removed or updated as needed to avoid style conflicts or memory leaks.
-
-> [!NOTE]
-> Any inline styles added programmatically are reset and restored on page changes to ensure a consistent and maintainable DOM. This prevents style accumulation or memory leaks and preserves cross-page visual integrity.
+- All HTML is rendered server-side using Django templates.
+- Markup is written using semantic, accessible structure (`<main>`, `<nav>`, `<header>`, `<section>`, `<article>`, etc.).
+- ARIA attributes are used only where necessary to support assistive technologies (for example, on dismissible alerts or icon-only controls).
+- Templates avoid inline scripts and inline styles; styling is provided via external CSS and interactivity is handled via small JavaScript modules for progressive enhancement.
+- Forms and destructive actions follow Django best practices (CSRF-protected POST requests), ensuring functionality remains reliable even if JavaScript is disabled.
 
 ### CSS
 
@@ -470,9 +465,9 @@ All custom CSS adopts the BEM (Block, Element, Modifier) naming convention for m
 
 **BEM** stands for:
 
-- **Block** - The standalone component (`recipe-card`)
-- **Element** - A child part of that component (`recipe-card__title`)
-- **Modifier** - A variation of the block or element (`recipe-card--featured`)
+- **Block** - The standalone component (`resource-card`)
+- **Element** - A child part of that component (`resource-card__title`)
+- **Modifier** - A variation of the block or element (`resource-card--featured`)
 
 ```css
 .block {
@@ -515,21 +510,23 @@ All custom CSS adopts the BEM (Block, Element, Modifier) naming convention for m
 
 ## Tools and Technologies
 
-| Tool / Tech                                                                                                             | Use                                                                                                                             |
-| ----------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------- |
-| [![badge](https://img.shields.io/badge/Markdown_Builder-grey?logo=markdown&logoColor=000000)](https://markdown.2bn.dev) | Creating structured README and TESTING documentation.                                                                           |
-| [![badge](https://img.shields.io/badge/Git-grey?logo=git&logoColor=F05032)](https://git-scm.com)                        | Version control for tracking code changes and managing development history.                                                     |
-| [![badge](https://img.shields.io/badge/GitHub-grey?logo=github&logoColor=181717)](https://github.com)                   | Secure remote repository for source code storage and collaboration.                                                             |
-| [![badge](https://img.shields.io/badge/VSCode-grey?logo=htmx&logoColor=007ACC)](https://code.visualstudio.com)          | Integrated Development Environment (IDE) used for writing, testing, and debugging code.                                         |
-| [![badge](https://img.shields.io/badge/Python-grey?logo=python)](https://www.python.org/)                               | Primary backend programming language used to implement application logic, data models, and server-side functionality.           |
-| [![badge](https://img.shields.io/badge/Django-grey.svg?logo=django&logoColor=0C4B33)](https://www.djangoproject.com/)   | Backend web framework used to manage authentication, database interactions via ORM, URL routing, and server-rendered templates. |
-| [![badge](https://img.shields.io/badge/HTML-grey?logo=html5&logoColor=E34F26)](https://en.wikipedia.org/wiki/HTML)      | Markup language used to structure and present content rendered by Django templates.                                             |
-| [![badge](https://img.shields.io/badge/CSS-grey?logo=CSS&logoColor=1572B6)](https://en.wikipedia.org/wiki/CSS)          | Styling language used to control layout, responsiveness, and visual presentation.                                               |
-| ![Static Badge](https://img.shields.io/badge/JavaScript-grey?logo=javascript&logoColor=f7df1e)                          | Client-side scripting used to enhance interactivity and user experience.                                                        |
-| [![badge](https://img.shields.io/badge/GitHub_Pages-grey?logo=githubpages&logoColor=222222)](https://pages.github.com)  | Hosting platform for the deployed front-end documentation and static assets.                                                    |
-| [![badge](https://img.shields.io/badge/Bootstrap-grey?logo=bootstrap&logoColor=7952B3)](https://getbootstrap.com)       | Front-end framework used to implement responsive layouts and reusable UI components.                                            |
-| [![badge](https://img.shields.io/badge/Figma-grey?logo=figma&logoColor=F24E1E)](https://www.figma.com)                  | Design tool used to create wireframes and plan UI layout before development.                                                    |
-| [![badge](https://img.shields.io/badge/Font_Awesome-grey?logo=fontawesome&logoColor=528DD7)](https://fontawesome.com)   | Icon library used to improve visual clarity and user interface consistency.                                                     |
+| Tool / Tech                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    | Use                                                                                                                             |
+| ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------- |
+| [![badge](https://img.shields.io/badge/Markdown_Builder-grey?logo=markdown&logoColor=000000)](https://markdown.2bn.dev)                                                                                                                                                                                                                                                                                                                                                                                                                                                                        | Creating structured README and TESTING documentation.                                                                           |
+| [![badge](https://img.shields.io/badge/Git-grey?logo=git&logoColor=F05032)](https://git-scm.com)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               | Version control for tracking code changes and managing development history.                                                     |
+| [![badge](https://img.shields.io/badge/GitHub-grey?logo=github&logoColor=181717)](https://github.com)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          | Secure remote repository for source code storage and collaboration.                                                             |
+| [![badge](https://img.shields.io/badge/VSCode-grey?logo=data%3Aimage%2Fsvg%2Bxml%3Bbase64%2CPD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4KPHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzMjAiIGhlaWdodD0iMzIwIiB2ZXJzaW9uPSIxLjEiPgogICAgPGcgZmlsbD0iIzAwN2FjYyI+CiAgICAgICAgPHBvbHlnb24gcG9pbnRzPSIzMCw2NSAzMjAsMjgwIDI0MCwzMjAgMCw4MCIvPgogICAgICAgIDxwb2x5Z29uIHBvaW50cz0iMzAsMjU1IDMyMCw0MCAyNDAsMCAwLDI0MCIvPgogICAgICAgIDxwb2x5Z29uIHBvaW50cz0iMjQwLDAgMzIwLDQwIDMyMCwyODAgMjQwLDMyMCIvPgogICAgPC9nPgo8L3N2Zz4K&logoColor=007ACC)](https://code.visualstudio.com) | Integrated Development Environment (IDE) used for writing, testing, and debugging code.                                         |
+| [![badge](https://img.shields.io/badge/Python-grey?logo=python)](https://www.python.org/)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      | Primary backend programming language used to implement application logic, data models, and server-side functionality.           |
+| [![badge](https://img.shields.io/badge/Django-grey.svg?logo=django&logoColor=0C4B33)](https://www.djangoproject.com/)                                                                                                                                                                                                                                                                                                                                                                                                                                                                          | Backend web framework used to manage authentication, database interactions via ORM, URL routing, and server-rendered templates. |
+| [![badge](https://img.shields.io/badge/HTML-grey?logo=html5&logoColor=E34F26)](https://en.wikipedia.org/wiki/HTML)                                                                                                                                                                                                                                                                                                                                                                                                                                                                             | Markup language used to structure and present content rendered by Django templates.                                             |
+| [![badge](https://img.shields.io/badge/CSS-grey?logo=CSS&logoColor=1572B6)](https://en.wikipedia.org/wiki/CSS)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 | Styling language used to control layout, responsiveness, and visual presentation.                                               |
+| ![Static Badge](https://img.shields.io/badge/JavaScript-grey?logo=javascript&logoColor=f7df1e)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 | Progressive enhancement only (small UI interactions). Core functionality remains usable without JavaScript.                     |
+| [![badge](https://img.shields.io/badge/GitHub_Pages-grey?logo=githubpages&logoColor=222222)](https://pages.github.com)                                                                                                                                                                                                                                                                                                                                                                                                                                                                         | Hosting platform for project documentation and static assessment assets only (README, TESTING, deployment evidence).            |
+| [![badge](https://img.shields.io/badge/Bootstrap-grey?logo=bootstrap&logoColor=7952B3)](https://getbootstrap.com)                                                                                                                                                                                                                                                                                                                                                                                                                                                                              | Front-end framework used to implement responsive layouts and reusable UI components.                                            |
+| [![badge](https://img.shields.io/badge/Figma-grey?logo=figma&logoColor=F24E1E)](https://www.figma.com)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         | Design tool used to create wireframes and plan UI layout before development.                                                    |
+| [![badge](https://img.shields.io/badge/Font_Awesome-grey?logo=fontawesome&logoColor=528DD7)](https://fontawesome.com)                                                                                                                                                                                                                                                                                                                                                                                                                                                                          | Icon library used to improve visual clarity and user interface consistency.                                                     |
+| [![badge](https://img.shields.io/badge/Black-grey?logo=python&logoColor=ffffff)](https://black.readthedocs.io/)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                | Opinionated Python code formatter used to enforce consistent style and PEP 8–aligned formatting across the codebase.            |
+| [![badge](https://img.shields.io/badge/Flake8-grey?logo=python&logoColor=ffffff)](https://flake8.pycqa.org/)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   | Python linting tool used to identify style issues, unused imports, and potential errors in accordance with PEP 8 guidelines.    |
 
 ## Agile Development Process
 
@@ -553,8 +550,6 @@ User stories were grouped into Epics using custom fields within GitHub Projects 
 
 ![Epic-gouped user stories with MoSCoW labels](documentation/agile/screenshots/epics-labels.png)
 
-### GitHub Pages
-
 ### GitHub Pages (Documentation Hosting)
 
 Project documentation and assessment assets are hosted on GitHub Pages.
@@ -573,8 +568,7 @@ GitHub Issues were used to document, discuss, and resolve individual tasks, bugs
 
 ### MoSCoW Prioritisation
 
-MoSCoW (Must, Should, Could, Won’t Have) was used throughout the project to prioritise user stories and features.
-For a full explanation and breakdown, see [MoSCoW Prioritisation](#moscow-prioritisation) under User Stories and Features.
+MoSCoW was used to prioritise User Stories and manage scope. Full details are documented in the Project Planning & Agile Methodology section above.
 
 ## Development Bugs
 
@@ -665,10 +659,12 @@ Accessibility was evaluated throughout development using:
 
 ### Other Credits
 
-| Material                                 | Source                                                                       |
-| ---------------------------------------- | ---------------------------------------------------------------------------- |
-| CSS - Block, Element, Modifider Strategy | [BEM-101 on CSS-Tricks](https://css-tricks.com/bem-101/)                     |
-| Defer non-critical CSS                   | [Demián Renzulli - web.dev](https://web.dev/articles/defer-non-critical-css) |
+| Material                                | Source                                                                                                                                        |
+| --------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------- |
+| CSS - Block, Element, Modifier Strategy | [BEM-101 on CSS-Tricks](https://css-tricks.com/bem-101/)                                                                                      |
+| Defer non-critical CSS                  | [Demián Renzulli - web.dev](https://web.dev/articles/defer-non-critical-css)                                                                  |
+| Black (formatting) & Flake8 (linting)   | [Black documentation](https://black.readthedocs.io/en/stable/) / [Flake8 documentation](https://flake8.pycqa.org/)                            |
+| Black & Flake8 pre-commit workflow      | [Sinead O’Brien — Using Black and Flake8 with pre-commit hooks](https://sineadobrien.com/tech/code/python-black-and-flake8-pre-commit-hooks/) |
 
 ### Content
 
@@ -676,12 +672,18 @@ Accessibility was evaluated throughout development using:
 
 #### Stock Images & Icons
 
-| Media | Attribution |
-| ----- | ----------- |
+Stock images were taken from [https://www.pexels.com/](https://www.pexels.com/).
+
+| Author             | Pexels Profile                          |
+| ------------------ | --------------------------------------- |
+| Christina Morillo  | https://www.pexels.com/@divinetechygirl |
+| RealToughCandy.com | https://www.pexels.com/@realtoughcandy  |
+| cottonbro studio   | https://www.pexels.com/@cottonbro       |
+| Mizuno K           | https://www.pexels.com/@mizunokozuki    |
 
 ### Acknowledgements
 
-- I would like to thank my Code Institute mentor, [Tim Nelson](https://www.github.com/TravelTimN) for the support throughout the development of this project.
+- I would like to thank my Code Institute mentor, [Tim Nelson](https://www.github.com/TravelTimN) & later Kevin Loughrey for the support throughout the development of this project.
 - I would like to thank the [Code Institute](https://codeinstitute.net) Tutor Team for their assistance with troubleshooting and debugging some project issues.
 - I would like to thank the [Code Institute Discord community](https://discord.com/channels/1371431903663489024/1371431904624119901) for the moral support; it kept me going during periods of self doubt and impostor syndrome.
 - I would like to thank my employer, for supporting me in my career development change towards becoming a software developer.
@@ -701,9 +703,7 @@ StudyStack provides clear, timely feedback in response to user actions such as c
 updating, deleting, or filtering resources.
 
 User feedback is implemented using Django’s built-in messaging framework and rendered
-consistently across the application as dismissible alert components. These alerts are
-announced to assistive technologies using appropriate ARIA semantics (`role="alert"`),
-ensuring that important feedback is immediately communicated to screen reader users.
+consistently across the application as dismissible alert components.
 Alerts are implemented as dismissible Bootstrap components and include `role="alert"` and `aria-live` semantics so feedback is announced to screen reader users.
 
 Messages are used to confirm successful actions, communicate permission restrictions,
